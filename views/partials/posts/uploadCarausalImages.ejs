@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3  m-auto text-center">
+      <%- include ("../messages") %>
+
+      <div class="form-group">
+        <label for="exampleInputFile" class="font-weight-bold">Multiple Image input</label>
+        <input type="file" name=<%= name %> class="form-control-file card-file px-4 text-center" id="exampleInputFile" aria-describedby="fileHelp" multiple>
+        <!-- <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small> -->
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <button type="submit" name="button" class="car-btn btn btn-danger"><i class="fas fa-image"></i> Add carausal images</button>
+      </div>
+    </div>
+  </div>
+</div>

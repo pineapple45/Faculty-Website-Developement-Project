@@ -1,0 +1,13 @@
+<div class="list-group list-group-item list-group-item-action flex-column align-items-start active ">
+  <div class="d-flex w-100 justify-content-between">
+    <h4 draggable="true" class="mb-1 dragdiv-h5"><%= item.subject %></h4>
+    <hr>
+    <small class="dragdiv-id" style="display:none"><%= item._id %></small>
+  </div>
+
+  <div draggable="true" class="mb-1 dragdiv-p"><%- item.details %></div>
+  <div class="d-flex justify-content-end">
+    <button type="button" name="button" class="icon-btn edit-icon-btn" data-toggle="modal"><i class="fas fa-edit icons edit-icon"></i></button>
+    <button type="submit" name="button" class="icon-btn del-icon-btn"><i class="fas fa-trash-alt icons del-icon"></i></button>
+  </div>
+</div>

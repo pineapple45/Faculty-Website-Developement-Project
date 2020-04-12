@@ -1,0 +1,201 @@
+<!-- Header ejs -->
+<!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <h3 class="text-light font-weight-bold">RESEARCH INTEREST</h3>
+    <a href="/"><button class="btn btn-secondary my-2 my-sm-0" type="button">Home</button></a>
+  </div>
+</nav> -->
+<%- include('./partials/header',{headerTitle:'RESEARCH INTEREST'})%>
+<br><br><br><br><br>
+
+<!-- <div style="border-style: dashed; border-width: 5px; border-radius: 10px; border-color: red" class="notes container m-50 text-left">
+  <text style="font-size:18px" class='font-weight-bold'>Instructions for carausal image upload.</text>
+  <hr>
+  <text>👉 Max image size to be inserted is 125kb.</text>
+  <br />
+  <text>👉 Max number of 12 images can be uploaded in one go.</text>
+  <br />
+  <text>👉 Only jpg/png/webp/tif formats are allowed. For space conservation its better to use .jpeg format.</text>
+  <br />
+  <text>👉 Follow the following link so as to make better collage of collection of images.<a href="https://www.photocollage.com/">[ collage maker ]</a></text>
+  <br />
+  <text>👉 For wider length images, choose (1500 x 500) size for image. Also height will remain constant throughout all images.</text>
+  <br />
+  <text>👉 Please keep removing unnecessary images by clicking the delete button at the top.</text>
+  <br />
+  <br />
+</div> -->
+<%- include("./partials/notes/carausalNotes"); %>
+
+
+<br>
+
+<!-- <div class="container">
+   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <% if(files) { %>
+      <div class="carousel-item active">
+        <form action="/dashboard/researchInterest/getResearchInterestItemImages/images/<%= files[0]._id %>?_method=DELETE" method="post">
+          <button class="btn btn-danger minus-btn">DELETE</button>
+        </form>
+        <img src="/dashboard/researchInterest/getResearchInterestItemImages/images/<%= files[0].filename %>" class="d-block w-100 car-img" alt="carausal-image">
+      </div>
+      <% files.forEach(function(file,index){ %>
+      <% if(index != 0) { %>
+      <div class="carousel-item">
+        <form action="/dashboard/researchInterest/getResearchInterestItemImages/images/<%= file._id %>?_method=DELETE" method="post">
+          <button class="btn btn-danger minus-btn">Delete</button>
+        </form>
+        <img src="/dashboard/researchInterest/getResearchInterestItemImages/images/<%= file.filename %>" class="d-block w-100 car-img" alt="carausal-image">
+      </div>
+      <% } %>
+      <% }) %>
+      <% } %>
+    </div>
+
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+
+
+</div> -->
+
+<%- include ("./partials/carausal",{files:files,renderedPage:'researchInterest'}) %>
+
+<br>
+
+
+<form class="item" action="/dashboard/researchInterest/uploadCarausalImages" method="post" enctype="multipart/form-data">
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-md-3  m-auto text-center">
+        <%- include ("./partials/messages") %>
+
+        <div class="form-group">
+          <label for="exampleInputFile" class="font-weight-bold">Multiple Image input</label>
+          <input type="file" name="researchInterestImages" class="form-control-file card-file px-4 text-center" id="exampleInputFile" aria-describedby="fileHelp" multiple>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <button type="submit" name="button" class="car-btn btn btn-danger"><i class="fas fa-image"></i> Add carausal images</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <%- include("./partials/posts/uploadCarausalImages",{name:'researchInterestImages'}); %>
+
+</form>
+<hr>
+
+<!-- <div style="border-style: dashed; border-width: 5px; border-radius: 10px; border-color: red" class="notes container m-50 text-left">
+  <text style="font-size:18px" class='font-weight-bold'>Instructions for adding Notes.</text>
+  <hr>
+  <text>👉 Both Title and Subject are must required feilds.</text>
+  <br />
+  <text>👉 Note editor can be used to style your notes.</text>
+  <br />
+  <text>👉 By dragging details section to another details section, contents(Title, Details) of both the sections are interchanged.</text>
+  <br />
+  <text>👉 While working with text editor, there might be scenerios when text color is white on white background, so it may not not be visisble. Select the area and change the text to some darker color.</text>
+  <br />
+  <text>👉 If Subject and Details are not visible after uploading. Please wait for few seconds and then reload</text>
+  <br />
+  <text>👉 Code view can always be used to make changes more efficently so as to have more control over whatever you are writing.</text>
+  <br />
+  <text>👉 Even though there is an option of inserting images and videos, they wont work as these are large sized files and require different pathways.</text>
+  <br />
+  <br />
+</div> -->
+<%- include("./partials/notes/noteDetails"); %>
+
+<br>
+
+<div class="container">
+  <% if(newItems) { %>
+
+  <% newItems.forEach((item, i) => { %>
+
+  <form class="item" action="/dashboard/researchInterest/delete" method="post">
+    <!-- <div class="list-group list-group-item list-group-item-action flex-column align-items-start active ">
+      <div class="d-flex w-100 justify-content-between">
+        <h4 draggable="true" class="mb-1 dragdiv-h5"><%= item.subject %></h4>
+        <hr>
+        <small class="dragdiv-id" style="display:none"><%= item._id %></small>
+      </div>
+
+      <div draggable="true" class="mb-1 dragdiv-p"><%- item.details %></div>
+      <div class="d-flex justify-content-end">
+        <button type="button" name="button" class="icon-btn edit-icon-btn" data-toggle="modal"><i class="fas fa-edit icons edit-icon"></i></button>
+        <button type="submit" name="button" class="icon-btn del-icon-btn"><i class="fas fa-trash-alt icons del-icon"></i></button>
+      </div>
+    </div> -->
+    <%- include("./partials/posts/delete",{item:item}); %>
+
+  </form>
+
+
+  <!-- Modal -->
+  <form class="item" action="/dashboard/researchInterest/edit" method="post">
+    <!-- <div class="modal fade" id="Modal">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit Block</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="col-form-label" for="inputDefault">Subject</label>
+              <input type="text" class="form-control modal-subject" name="newInterestItemSubject" placeholder="Enter subject name" id="inputDefault" value="" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label for="exampleTextarea">Details</label>
+              <textarea class="form-control modal-details summernote" name="newInterestItemDetails" placeholder="Enter subject details" rows="6" spellcheck="false" contenteditable="true"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <%- include("./partials/posts/edit"); %>
+
+  </form>
+
+  <br>
+
+  <% }); %>
+  <% } else { %>
+    <div class="container text-center">
+      <h5>No notes to show. Enter subject and details to show up on the screen.</h5>
+    </div>
+  <% } %>
+
+  <form class="item" action="/dashboard/researchInterest" method="post">
+    <!-- <div class="form-group">
+      <label class="col-form-label" for="inputDefault">Subject</label>
+      <input type="text" class="form-control add-subject" name="newInterestItemSubject" placeholder="Enter subject name" id="inputDefault" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label for="exampleTextarea">Details</label>
+      <textarea class="form-control add-details summernote" name="newInterestItemDetails" placeholder="Enter subject details" rows="4" spellcheck="false" contenteditable="true"></textarea>
+    </div>
+    <button type="submit" class="btn btn-info add-btn" name="list"><i class="fas fa-database"></i> &nbsp Add</button>  -->
+    <%- include("./partials/posts/generic"); %>
+
+  </form>
+</div>
+
+<hr>

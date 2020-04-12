@@ -1,0 +1,17 @@
+/* THE FOLLOWING CLASSES WILL BE ADDED ACCORDING TO THE DRAG EVENTS */
+
+/* start */
+.hold{
+  border: solid #ccc 4px;
+}
+
+.hovered {
+  background: #f4f4f4;
+  border-style: dashed;
+}
+
+.invisible {
+  display: none;
+}
+
+/* end */

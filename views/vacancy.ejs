@@ -1,0 +1,52 @@
+<!-- Header ejs -->
+<!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <h3 class="text-light font-weight-bold">VACANCY</h3>
+    <a href="/"><button class="btn btn-secondary my-2 my-sm-0" type="button">Home</button></a>
+  </div>
+</nav> -->
+<%- include('./partials/header',{headerTitle:'VACANCY'})%>
+
+<br><br><br><br><br>
+
+
+<%- include("./partials/notes/noteDetails"); %>
+
+<br>
+
+<div class="container">
+  <% if(newItems) { %>
+
+  <% newItems.forEach((item, i) => { %>
+
+  <form class="item" action="/dashboard/vacancy/delete" method="post">
+
+    <%- include("./partials/posts/delete",{item:item}); %>
+
+  </form>
+
+
+  <!-- Modal -->
+  <form class="item" action="/dashboard/vacancy/edit" method="post">
+
+    <%- include("./partials/posts/edit"); %>
+
+  </form>
+
+  <br>
+
+  <% }); %>
+  <% } else { %>
+    <div class="container text-center">
+      <h5>No notes to show. Enter subject and details to show up on the screen.</h5>
+    </div>
+  <% } %>
+
+  <form class="item" action="/dashboard/vacancy" method="post">
+
+    <%- include("./partials/posts/generic"); %>
+
+  </form>
+</div>
+
+<hr>

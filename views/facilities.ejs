@@ -1,0 +1,131 @@
+<!-- Header ejs -->
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <h3 class="text-light font-weight-bold">FACILITIES</h3>
+    <a href="/"><button class="btn btn-secondary my-2 my-sm-0" type="button">Home</button></a>
+  </div>
+</nav> -->
+<%- include('./partials/header',{headerTitle:'FACILITIES'})%>
+
+<br><br><br><br><br>
+
+<!-- <div style="border-style: dashed; border-width: 5px; border-radius: 10px; border-color: red" class="notes container m-50 text-left">
+  <text style="font-size:18px" class='font-weight-bold'>Instructions for card image and info upload.</text>
+  <hr>
+  <text>👉 Max image size to be inserted is 125kb.</text>
+  <br/>
+  <text>👉 Only 1 image will be uploaded at a time.</text>
+  <br/>
+  <text>👉 Only jpg/png/webp/tif formats are allowed. For space conservation its better to use .jpeg format.</text>
+  <br/>
+  <text>👉 Passport size images are good option for upload. Also height will remain constant throughout all images.</text>
+  <br/>
+  <text>👉 Please keep removing unnecessary images by clicking the delete button in each card.</text>
+  <br/>
+  <text>👉 Only image uploading is essential. Title and details are both optional.</text>
+  <br/>
+  <text>👉 Only title and details can be edited.</text>
+  <br/>
+  <text>👉 While working with text editor, there might be scenerios when text color is white on white background, so it may not not be visisble. Select the area and change the text to some darker color.</text>
+  <br />
+  <text>👉 If Title and Details are not visible after uploading. Please wait for few seconds and then reload</text>
+  <br />
+  <text>👉 Code view can always be used to make changes more efficently so as to have more control over whatever you are writing.</text>
+  <br />
+  <text>👉 Even though there is an option of inserting images and videos, they wont work as these are large sized files and require different pathways.</text>
+  <br />
+  <br/>
+</div> -->
+
+<%- include("./partials/notes/cardNotes") %>
+
+<hr>
+<div class="container">
+  <div class="container w-25 sticky-top">
+    <%- include ("./partials/messages") %>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3">
+    <% if(files) { %>
+    <% files.forEach(function(file) {  %>
+    <!-- <div class="col mb-4">
+      <div class="card h-100">
+        <img src="/dashboard/facilities/getFacilityImages/images/<%= file.filename %>" class="card-img-top card-image" alt="...">
+        <div class="card-body">
+          <h5 class="card-title o-card-title"></h5>
+          <p class="card-text o-card-details"></p>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary edit-btn" type="button" name="button" data-toggle="myModal">Edit</button>
+          <button class="btn btn-danger delete-btn" type="button" name="button">Delete</button>
+        </div>
+      </div>
+    </div> -->
+    <%- include("./partials/card",{file:file,renderedPage:'facilities'})%>
+    <% }) %>
+    <% } else { %>
+    <p> No files to show </p>
+    <% } %>
+
+
+    <div class="col mb-4">
+      <div class="card h-100">
+        <form class="" action="/dashboard/facilities/uploadCardImages" method="post" enctype="multipart/form-data">
+          <!-- <div class="card-body"> -->
+            <!-- <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a short card.</p> -->
+            <!-- <div class="form-group">
+              <label for="exampleInputFile">Image input</label>
+              <input type="file" name="image" class="form-control-file card-file" id="exampleInputFile" aria-describedby="fileHelp">
+            </div>
+            <div class="form-group">
+              <label class="col-form-label" for="inputDefault">Title</label>
+              <input type="text" name="newFacilityItemTitle" class="form-control i-card-title" placeholder="Default title" id="inputDefault">
+            </div>
+            <div class="form-group">
+              <label for="exampleTextarea">Details</label>
+              <textarea class="form-control i-card-detail summernote" name="newFacilityItemDetails" id="exampleTextarea" rows="3" spellcheck="false"></textarea>
+            </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary btn-block submit-btn">Submit</button>
+            </div>
+          </div> -->
+          <%- include("./partials/posts/uploadCardImages")%>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <form class="item" action="/dashboard/facilities/edit" method="post">
+      <!-- <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Variables</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <div class="form-group">
+                <label class="col-form-label" for="inputDefault">Title</label>
+                <input type="text" class="form-control modal-Title" name="newFacilityItemTitle" placeholder="Enter title" id="inputDefault" value = "" autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label for="exampleTextarea">Details</label>
+                <textarea class="form-control modal-details summernote" id="" name="newFacilityItemDetails" placeholder="Enter title details" rows="6" spellcheck="false" contenteditable="true"></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <%- include("./partials/posts/cardEdit") %>
+    </form>
+
+  </div>
+</div>
