@@ -46,8 +46,8 @@ module.exports = function(values){
             title: cardItemTitle,
             details: cardItemDetails
           }).then(() => {
-            req.flash('success_msg', "values updated successfully");
-            console.log('Facility values updated successfully');
+            req.flash('success_msg', "card values updated successfully");
+            console.log('Card values updated successfully');
             res.redirect('back');
           }).catch(err => {
             console.error(err);

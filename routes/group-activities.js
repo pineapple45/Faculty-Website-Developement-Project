@@ -22,10 +22,10 @@ mongoose.set('useFindAndModify', false);
 
 //vacancyItem model
 const model = require('../models/InterestItem');
-const VacancyItem = model.vacancyItem;
-const Item = VacancyItem;
+const GroupActivitiesItem = model.groupActivitiesItem;
+const Item = GroupActivitiesItem;
 
-require("./get/generic")({router:router,Item:Item,renderedPage:'vacancy'});
+require("./get/generic")({router:router,Item:Item,renderedPage:'group-activities'});
 
 require("./post/generic")({router:router,Item:Item});
 

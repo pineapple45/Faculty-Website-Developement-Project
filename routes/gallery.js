@@ -17,7 +17,7 @@ const {
 // DB Config
 const db = require('../config/keys').MongoURI;
 
-const collectionName = 'facilityImages';
+const collectionName = 'galleryCardImages';
 
 // Init gridfs
 
@@ -62,36 +62,28 @@ mongoose.set('useFindAndModify', false);
 let facilityEditItemName;
 
 
-// Facility model
-const model = require('../models/FacilityItem');
-const FacilityItem = model.facilityItem;
-const Item = FacilityItem;
-
-// require('./addCardDetails')(Item);
-// require('./addCardDetails');
-
-// require("./post/uploadCardDetails")({
-//   Item: Item,
-//   router: router,
-// })
+// GalleryCardItem model
+const Item = require('../models/GalleryItem');
 
 foo().then(res => {
   gfs = res;
   require('./get/secondgeneric')({
     router: router,
     gfs: gfs,
-    renderedPage: 'facilities',
+    renderedPage: 'gallery',
     Item:Item,
   });
 });
 
 
 
-// @route POST /dashboard/facilities/uploadFacilityImages
+
+
+// @route POST /dashboard/gallery/uploadCardImages
 // @desc uploads file to // DB
 
 getfoo().then(res => {
-  require("./post/uploadCardImage")({
+  require("./post/uploadGalleryCardImage")({
     Item: Item,
     uploadCardImages: res.uploadCardImages,
     gfs: res.gfs,
@@ -127,14 +119,65 @@ foo().then(res => {
 
 //delete cardDetails
 
-foo().then(res => {
-  gfs = res;
-  require("./deleteCardDetails")({
-    collectionName: collectionName,
-    gfs: gfs,
-    Item: Item
+// foo().then(res => {
+//   gfs = res;
+//   require("./deleteCardDetails")({
+//     collectionName: collectionName,
+//     gfs: gfs,
+//     Item: Item
+//   })
+// });
+
+
+io.on('connection', (socket) => {
+  socket.on('deletedImageName', (data) =>{
+    let deletedGalleryImageName = data.deletedGalleryImageName;
+
+    gfs.files.findOne({
+      filename: deletedGalleryImageName
+    }).then(image => {
+      //check if images
+      if (!image || image.length === 0) {
+        console.log('No image found');
+      }
+      //image exists than delete it
+
+      gfs.remove({
+        _id: image._id,
+        root: collectionName
+      }).then(() => {
+        console.log('successfully deleted image details from files');
+      }).catch(err => {
+        console.error(err);
+        console.log(err);
+      })
+    }).catch(err => {
+      console.error(err);
+      console.log(err);
+    });
+
+
+    Item.find().then(docs => {
+      docs.forEach((doc, i) => {
+        if (deletedGalleryImageName === doc.image) {
+          Item.deleteOne({
+            image: doc.image
+          }).then(() => {
+            console.log('Image subject and details successfully deleted');
+            socket.emit('reloadPage', 'reload');
+          }).catch(err => {
+            console.error(err);
+            console.log(err);
+          });
+        }
+      });
+    }).catch(err => {
+      console.error(err);
+      console.log(err);
+    });
+
   })
-});
+})
 
 require("./editCardDetails")({
   router: router,

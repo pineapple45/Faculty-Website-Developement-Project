@@ -17,7 +17,7 @@ const {
 // DB Config
 const db = require('../config/keys').MongoURI;
 
-const collectionName = 'facilityImages';
+const collectionName = 'cmProjectFellowImages';
 
 // Init gridfs
 
@@ -62,25 +62,17 @@ mongoose.set('useFindAndModify', false);
 let facilityEditItemName;
 
 
-// Facility model
+// CmResearchScholarItem model
 const model = require('../models/FacilityItem');
-const FacilityItem = model.facilityItem;
-const Item = FacilityItem;
-
-// require('./addCardDetails')(Item);
-// require('./addCardDetails');
-
-// require("./post/uploadCardDetails")({
-//   Item: Item,
-//   router: router,
-// })
+const CmProjectFellowItem = model.cmProjectFellowItem;
+const Item = CmProjectFellowItem;
 
 foo().then(res => {
   gfs = res;
   require('./get/secondgeneric')({
     router: router,
     gfs: gfs,
-    renderedPage: 'facilities',
+    renderedPage: 'cm-project-fellow',
     Item:Item,
   });
 });

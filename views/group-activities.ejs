@@ -1,5 +1,5 @@
 <!-- Header ejs -->
-<%- include('./partials/header',{headerTitle:'VACANCY'})%>
+<%- include('./partials/header',{headerTitle:'GROUP ACTIVITIES'})%>
 
 <br><br><br><br><br>
 
@@ -13,7 +13,7 @@
 
   <% newItems.forEach((item, i) => { %>
 
-  <form class="item" action="/dashboard/vacancy/delete" method="post">
+  <form class="item" action="/dashboard/group-activities/delete" method="post">
 
     <%- include("./partials/posts/delete",{item:item}); %>
 
@@ -21,7 +21,7 @@
 
 
   <!-- Modal -->
-  <form class="item" action="/dashboard/vacancy/edit" method="post">
+  <form class="item" action="/dashboard/group-activities/edit" method="post">
 
     <%- include("./partials/posts/edit"); %>
 
@@ -36,7 +36,7 @@
     </div>
   <% } %>
 
-  <form class="item" action="/dashboard/vacancy" method="post">
+  <form class="item" action="/dashboard/group-activities" method="post">
 
     <%- include("./partials/posts/generic"); %>
 

@@ -22,10 +22,10 @@ mongoose.set('useFindAndModify', false);
 
 //vacancyItem model
 const model = require('../models/InterestItem');
-const VacancyItem = model.vacancyItem;
-const Item = VacancyItem;
+const InvitedTalksItem = model.invitedTalksItem;
+const Item = InvitedTalksItem;
 
-require("./get/generic")({router:router,Item:Item,renderedPage:'vacancy'});
+require("./get/generic")({router:router,Item:Item,renderedPage:'invited-talks'});
 
 require("./post/generic")({router:router,Item:Item});
 

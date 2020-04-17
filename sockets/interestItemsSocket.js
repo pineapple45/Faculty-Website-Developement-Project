@@ -24,6 +24,27 @@ io.on('connection', function(socket) {
     else if(href.includes('vacancy')){
       Item = model.vacancyItem;
     }
+    else if(href.includes('journals')){
+      Item = model.journalsItem;
+    }
+    else if(href.includes('book-and-book-chapters')){
+      Item = model.bookItem;
+    }
+    else if(href.includes('group-activities')){
+      Item = model.groupActivitiesItem;
+    }
+    else if(href.includes('awards-and-academics')){
+      Item = model.awardsAcademicsItem;
+    }
+    else if(href.includes('invited-talks')){
+      Item = model.invitedTalksItem;
+    }
+    else if(href.includes('lab-news')){
+      Item = model.labNewsItem;
+    }
+    else if(href.includes('latest-research')){
+      Item = model.latestResearchItem;
+    }
 
 
     function swap() {

@@ -13,8 +13,6 @@ const {
   ensureAuthenticated
 } = require('../config/auth');
 
-
-
 // DB Config
 const db = require('../config/keys').MongoURI;
 mongoose.set('useFindAndModify', false);
@@ -22,10 +20,10 @@ mongoose.set('useFindAndModify', false);
 
 //vacancyItem model
 const model = require('../models/InterestItem');
-const VacancyItem = model.vacancyItem;
-const Item = VacancyItem;
+const BookItem = model.bookItem;
+const Item = BookItem;
 
-require("./get/generic")({router:router,Item:Item,renderedPage:'vacancy'});
+require("./get/generic")({router:router,Item:Item,renderedPage:'book-and-book-chapters'});
 
 require("./post/generic")({router:router,Item:Item});
 

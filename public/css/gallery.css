@@ -1,0 +1,83 @@
+.gallery-card{
+  /* height: 14.375rem; */
+  height: 13.25rem;
+
+  /* width: 650px; */
+  margin: 20px;
+  display: inline-block;
+}
+
+.gallery-card-img{
+  max-width: 100%;
+  max-height: 100%;
+}
+/* .gallery-card-img:hover{
+  opacity: 0.8;
+} */
+
+.gallery-card-details{
+  opacity:0;
+  font-size: 30px;
+  position:relative;
+  bottom:100%;
+  left:8px;
+  color:#fff;
+  background-color:rgba(77,36,0,0.8);
+  /* width:300px; */
+  height:13.25rem;
+  -webkit-transition: all 400ms ease-out;
+  -moz-transition: all 400ms ease-out;
+  -o-transition: all 400ms ease-out;
+  -ms-transition: all 400ms ease-out;
+  transition: all 400ms ease-out;
+  text-align:center;
+}
+
+.gallery-card-details:hover{
+  opacity: 1;
+}
+
+.gallery-card-details .text{
+  height:0;
+  opacity:1;
+  transition-delay: 0s;
+  transition-duration: 0.4s;
+  position: relative;
+  bottom: 40%;
+}
+
+.gallery-card-details:hover .text{
+  opacity:1;
+  margin-bottom: 100px;
+  transform: translateY(180px);
+  -webkit-transform: translateY(180px);
+}
+
+.gallery-modal-text{
+  padding: 10px;
+  font-size: 20px;
+}
+
+
+.cross-icon{
+    font-size: 25px;
+    color: grey;
+    float: left;
+    position: relative;
+    left: -0.8rem;
+}
+
+.cross-icon:hover{
+  color: red;
+}
+
+
+.prev-btn{
+  position: relative;
+  right: 90%;
+}
+
+.next-btn{
+  position: relative;
+  left: 7%;
+}

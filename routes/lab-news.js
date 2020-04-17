@@ -27,7 +27,7 @@ mongoose.set('useFindAndModify', false);
 
 router.use(merthodOverride('_method'));
 
-const collectionName = 'researchInterestImages';
+const collectionName = 'labNewsImages';
 
 // NOW WE WORK ON UPLOADING FILES TO THE CARAUSAL
 
@@ -52,15 +52,15 @@ let gfs;
 
 //InterItem model
 const model = require('../models/InterestItem');
-const InterestItem = model.interestItem;
-const Item = InterestItem;
+const LabNewsItem = model.labNewsItem;
+const Item = LabNewsItem;
 
 foo().then( res => {
  gfs = res;
  require("./get/genericWithCarausal")({
    router: router,
    Item: Item,
-   renderedPage: 'researchInterest',
+   renderedPage: 'lab-news',
    collectionName: collectionName,
    gfs: gfs
  })

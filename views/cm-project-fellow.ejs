@@ -1,7 +1,6 @@
 <!-- Header ejs -->
-<%- include('./partials/header',{headerTitle:'FACILITIES'})%>
-
-<br><br><br><br><br>
+<%- include("./partials/tabs",{headerTitle:'CURRENT MEMBERS'}) %>
+<br><br>
 <%- include("./partials/notes/cardNotes") %>
 <hr>
 <div class="container">
@@ -12,7 +11,7 @@
   <div class="row row-cols-1 row-cols-md-3">
     <% if(files) { %>
     <% files.forEach(function(file) {  %>
-    <%- include("./partials/card",{file:file,renderedPage:'/facilities'})%>
+    <%- include("./partials/card",{file:file,renderedPage:'/cm-project-fellow'})%>
     <% }) %>
     <% } else { %>
     <p> No files to show </p>
@@ -21,14 +20,14 @@
 
     <div class="col mb-4">
       <div class="card h-100">
-        <form id="cardImageUploadForm" class="" action="/dashboard/facilities/uploadCardImages" method="post" enctype="multipart/form-data">
+        <form id="cardImageUploadForm" class="" action="/dashboard/cm-project-fellow/uploadCardImages" method="post" enctype="multipart/form-data">
           <%- include("./partials/posts/uploadCardImages")%>
         </form>
       </div>
     </div>
 
     <!-- Modal -->
-    <form class="item" action="/dashboard/facilities/edit" method="post">
+    <form class="item" action="/dashboard/cm-project-fellow/edit" method="post">
       <%- include("./partials/posts/cardEdit") %>
     </form>
 

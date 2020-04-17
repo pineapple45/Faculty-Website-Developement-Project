@@ -1,0 +1,84 @@
+<!-- Header ejs -->
+<%- include('./partials/header',{headerTitle:'GALLERY'})%>
+
+<br><br><br><br><br>
+<%- include("./partials/notes/cardNotes") %>
+<br>
+<div class="container">
+  <div class="container w-50 sticky-top">
+    <%- include ("./partials/messages") %>
+    <br>
+  </div>
+    <% if(files) { %>
+    <% files.forEach(function(file) {  %>
+    <div class="gallery-card">
+      <img class="gallery-card-img" src="/dashboard/gallery/getCardImages/images/<%= file.image %>" alt=""><i class="fa fa-times cross-icon" aria-hidden="true"></i>
+      <div class="gallery-card-details">
+        <div class="text">
+          <%= file.details %>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+    <% } else { %>
+    <p> No files to show </p>
+    <% } %>
+</div>
+
+<% if(files) { %>
+<div class="modal fade" id="galleryModal">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <% files.forEach(function(file) {  %>
+        <div class="slides">
+          <div class="modal-header">
+            <h5 class="modal-title">Gallery</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <img class="gallery-modal-img gallery-card-img" src="/dashboard/gallery/getCardImages/images/<%= file.image %>" alt="modal image">
+            <div name= "gallery-card-details" class="gallery-modal-text">
+              <%= file.details %>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        <button type="button" class="btn btn-info next-btn">next</button>
+        <button type="button" class="btn btn-info prev-btn">prev</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% } else { %>
+<p> No files to show </p>
+<% } %>
+
+
+<div class="container w-25">
+  <div class="card h-100">
+    <form id="galleryCardImageUploadForm" class="" action="/dashboard/gallery/uploadCardImages" method="post" enctype="multipart/form-data">
+      <div class="card-body">
+        <!-- <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a short card.</p> -->
+        <div class="form-group">
+          <label for="exampleInputFile">Image input</label>
+          <input type="file" name="image" class="form-control-file card-file" id="uploadCardImage" aria-describedby="fileHelp">
+        </div>
+        <div class="form-group">
+          <label class="col-form-label" for="inputDefault">Details</label>
+          <input type="text" name="newGalleryCardItemDetails" class="form-control i-card-title" placeholder="Default details" id="inputDefault">
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-primary btn-block submit-btn">Submit</button>
+        </div>
+      </div>
+   </form>
+  </div>
+</div>
+<br>

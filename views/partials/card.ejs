@@ -1,9 +1,9 @@
-<div class="col mb-4">
+<div class="dashboard-card col mb-4">
   <div class="card h-100">
-    <img src="/dashboard/<%= renderedPage %>/getCardImages/images/<%= file.filename %>" class="card-img-top card-image" alt="...">
+    <img src="/dashboard<%= renderedPage %>/getCardImages/images/<%= file.image %>" class="card-img-top card-image" alt="...">
     <div class="card-body">
-      <h5 class="card-title o-card-title"></h5>
-      <p class="card-text o-card-details"></p>
+      <h5 class="card-title o-card-title"><%= file.title %></h5>
+      <p class="card-text o-card-details"><%- file.details %></p>
     </div>
     <div class="card-footer">
       <button class="btn btn-primary edit-btn" type="button" name="button" data-toggle="myModal">Edit</button>

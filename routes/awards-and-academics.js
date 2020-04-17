@@ -22,10 +22,10 @@ mongoose.set('useFindAndModify', false);
 
 //vacancyItem model
 const model = require('../models/InterestItem');
-const VacancyItem = model.vacancyItem;
-const Item = VacancyItem;
+const AwardsAcademicsItem = model.awardsAcademicsItem;
+const Item = AwardsAcademicsItem;
 
-require("./get/generic")({router:router,Item:Item,renderedPage:'vacancy'});
+require("./get/generic")({router:router,Item:Item,renderedPage:'awards-and-academics'});
 
 require("./post/generic")({router:router,Item:Item});
 

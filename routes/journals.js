@@ -20,12 +20,12 @@ const db = require('../config/keys').MongoURI;
 mongoose.set('useFindAndModify', false);
 
 
-//vacancyItem model
+//journalsItem model
 const model = require('../models/InterestItem');
-const VacancyItem = model.vacancyItem;
-const Item = VacancyItem;
+const JournalsItem = model.journalsItem;
+const Item = JournalsItem;
 
-require("./get/generic")({router:router,Item:Item,renderedPage:'vacancy'});
+require("./get/generic")({router:router,Item:Item,renderedPage:'journals'});
 
 require("./post/generic")({router:router,Item:Item});
 

@@ -71,12 +71,10 @@ module.exports = function(values){
                    console.log(err);
                  });
 
-                 const itemTitle = req.body.newCardItemTitle;
-                 const itemInfo = req.body.newCardItemDetails;
+                 const itemInfo = req.body.newGalleryCardItemDetails;
 
                  Item.countDocuments({}).then(val =>{
                        const item = new Item({
-                         title: itemTitle,
                          details: itemInfo,
                          image: uploadImageName,
                          pos: val
