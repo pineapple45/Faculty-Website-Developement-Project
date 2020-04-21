@@ -65,6 +65,10 @@ let facilityEditItemName;
 // GalleryCardItem model
 const Item = require('../models/GalleryItem');
 
+// GalleryImageClassItem model
+const ClassItem = require('../models/GalleryImageClassItem');
+
+
 foo().then(res => {
   gfs = res;
   require('./get/secondgeneric')({
@@ -119,22 +123,13 @@ foo().then(res => {
 
 //delete cardDetails
 
-// foo().then(res => {
-//   gfs = res;
-//   require("./deleteCardDetails")({
-//     collectionName: collectionName,
-//     gfs: gfs,
-//     Item: Item
-//   })
-// });
-
-
 io.on('connection', (socket) => {
-  socket.on('deletedImageName', (data) =>{
-    let deletedGalleryImageName = data.deletedGalleryImageName;
+  socket.on('deleteGalleryItems', (data) =>{
+    let imageId = data.imageId;
+    let imageName = data.imageName;
 
     gfs.files.findOne({
-      filename: deletedGalleryImageName
+      filename: imageName
     }).then(image => {
       //check if images
       if (!image || image.length === 0) {
@@ -148,41 +143,179 @@ io.on('connection', (socket) => {
       }).then(() => {
         console.log('successfully deleted image details from files');
       }).catch(err => {
-        console.error(err);
         console.log(err);
       })
     }).catch(err => {
-      console.error(err);
       console.log(err);
     });
 
 
-    Item.find().then(docs => {
-      docs.forEach((doc, i) => {
-        if (deletedGalleryImageName === doc.image) {
-          Item.deleteOne({
-            image: doc.image
-          }).then(() => {
-            console.log('Image subject and details successfully deleted');
-            socket.emit('reloadPage', 'reload');
-          }).catch(err => {
-            console.error(err);
-            console.log(err);
-          });
-        }
-      });
-    }).catch(err => {
+    Item.deleteOne({
+      image:imageName
+    }).then(() =>{
+      console.log('Image subject and details successfully deleted');
+    }).catch(err =>{
       console.error(err);
-      console.log(err);
     });
+
+    ClassItem.deleteOne({parentId:imageId}).then(() =>{
+      console.log('Class related to the image and file has been deleted');
+      socket.emit('reloadPage', 'reload');
+    }).catch(err =>{
+      console.log(err);
+    })
+
+
+    // Item.find().then(docs => {
+    //   docs.forEach((doc, i) => {
+    //     if (imageName === doc.image) {
+    //       Item.deleteOne({
+    //         image: doc.image
+    //       }).then(() => {
+    //         console.log('Image subject and details successfully deleted');
+    //         socket.emit('reloadPage', 'reload');
+    //       }).catch(err => {
+    //         console.error(err);
+    //         console.log(err);
+    //       });
+    //     }
+    //   });
+    // }).catch(err => {
+    //   console.error(err);
+    //   console.log(err);
+    // });
 
   })
 })
 
-require("./editCardDetails")({
-  router: router,
-  Item: Item
+
+router.post('/edit',(req,res) =>{
+  const editDetailsGallery = req.body.editDetailsGallery;
+  const imagePathGallery = req.body.editDetailsImagePath;
+  Item.find().then(docs => {
+    docs.forEach((doc, i) => {
+      let imgname = doc.image.replace(/^.*[\\\/]/, '');
+      if (imgname === imagePathGallery) {
+        Item.updateOne({image:imagePathGallery},{details:editDetailsGallery}).then(() =>{
+          req.flash('success_msg','Gallery card details succesfully updated');
+          console.log('Gallery card details succesfully updated');
+        }).catch(err => console.log(err));
+      }
+    });
+  }).catch(err => {
+    console.log(err);
+  });
+  res.redirect('back');
 })
+
+
+
+io.on('connection',(socket) =>{
+  socket.on('clear',(data) =>{
+    if(data === 'removeClasses')
+    {
+      removeAllClasses();
+    }
+  })
+})
+
+
+io.on('connection',(socket)=>{
+  socket.on('orignalClass',(data)=>{
+    const parentId = data.parentId;
+    const addableClass = data.class;
+    addClass(parentId,addableClass);
+  })
+})
+
+
+io.on('connection',(socket)=>{
+  socket.on('removeOrignalClass',(id)=>{
+    const parentId = id;
+    removeClass(parentId);
+  })
+})
+
+io.on('connection',(socket)=>{
+  socket.on('bigClass',(data)=>{
+    const parentId = data.parentId;
+    const addableClass = data.class;
+    addClass(parentId,addableClass);
+  })
+})
+
+io.on('connection',(socket)=>{
+  socket.on('removeBigClass',(id)=>{
+    const parentId = id;
+    removeClass(parentId);
+  })
+})
+
+
+io.on('connection',(socket)=>{
+  socket.on('horizontalClass',(data)=>{
+    const parentId = data.parentId;
+    const addableClass = data.class;
+    addClass(parentId,addableClass);
+
+  })
+})
+
+io.on('connection',(socket)=>{
+  socket.on('removeHorizontalClass',(id)=>{
+    const parentId = id;
+    removeClass(parentId);
+  })
+})
+
+
+io.on('connection',(socket)=>{
+  socket.on('verticalClass',(data)=>{
+    const parentId = data.parentId;
+    const addableClass = data.class;
+    addClass(parentId,addableClass);
+
+  })
+})
+
+
+
+function addClass(parentId,addableClass){
+  ClassItem.findOne({parentId:parentId}).then(foundItem =>{
+    if(foundItem){
+      ClassItem.updateOne({parentId:parentId},{addedClass:addableClass}).then(() =>{
+        console.log("already present class updated");
+        getFilesOfClasses();
+
+      })
+    }else{
+      const item = new ClassItem({
+        parentId:parentId,
+        addedClass:addableClass
+      });
+
+      item.save().then(() => {
+        console.log('class added to database')
+        getFilesOfClasses();
+      });
+    }
+  })
+}
+
+function removeAllClasses(){
+  ClassItem.deleteMany({}).then(() => {
+    console.log('all classes removed from database');
+    getFilesOfClasses();
+  })
+}
+
+function getFilesOfClasses(){
+  ClassItem.find().then((foundItems) =>{
+    io.on('connection',(socket) =>{
+      socket.emit('foundItems',foundItems);
+    })
+  })
+}
 
 
 module.exports = router;

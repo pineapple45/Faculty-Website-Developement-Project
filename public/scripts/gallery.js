@@ -1,23 +1,21 @@
 // let images = document.querySelectorAll('.gallery-card-img');
-let imagesDetail = document.querySelectorAll('.gallery-card-details');
+// let imagesDetail = document.querySelectorAll('.gallery-card-details');
 const nextBtn = document.querySelector('.next-btn')
 const prevBtn = document.querySelector('.prev-btn')
 const slides = document.querySelectorAll('.slides')
 const deleteGalleryCardForm = document.querySelector('#deleteGalleryCardForm');
 const deleteCrossIcons = document.querySelectorAll('.cross-icon');
+const galleryCardContainers = document.querySelectorAll('.gallery-card-containers')
+const galleryImages = document.querySelectorAll('.gallery-images')
 
 let startSlide = '';
-// let newSlide = 0;
-imagesDetail.forEach((imageDetail,i) => {
-  imageDetail.addEventListener('click',()=>{
+galleryImages.forEach((galleryImage,i) => {
+  galleryImage.addEventListener('click',()=>{
     startSlide = i;
     getCurrentSlide(i);
   })
 
 })
-
-
-
 
 nextBtn.addEventListener('click',() =>{
   plusSlide(1);
@@ -57,15 +55,3 @@ function plusSlide(i){
   slides[startSlide].setAttribute('style','display:block');
   $('#galleryModal').modal('show');
 }
-
-
-deleteCrossIcons.forEach((deleteCrossIcon,i) =>{
-  deleteCrossIcon.addEventListener('click',() =>{
-    let deletedGalleryImageName = "";
-    let getdeletedImageName = deleteCrossIcon.previousElementSibling.getAttribute('src');
-    deletedGalleryImageName = getdeletedImageName.replace(/^.*[\\\/]/, '');
-    socket.emit('deletedImageName',{
-      deletedGalleryImageName:deletedGalleryImageName,
-    })
-  })
-})

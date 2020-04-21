@@ -4,25 +4,42 @@
 <br><br><br><br><br>
 <%- include("./partials/notes/cardNotes") %>
 <br>
-<div class="container">
-  <div class="container w-50 sticky-top">
-    <%- include ("./partials/messages") %>
-    <br>
+
+<% if(files) {%>
+<div id="revert-btn-container">
+  <button id="revert-btn">Revert to original sized images</button>
+</div>
+<% } %>
+
+<div class="container w-50 sticky-top">
+  <%- include ("./partials/messages") %>
+  <br>
+</div>
+
+<div class="main-container container">
+  <% if(files) { %>
+  <% files.forEach(function(file,i) {  %>
+  <div class="img-container" value="<%= file.details %>" id=<%= i+1 %>>
+    <img class='gallery-images' name = <%= file.image %> src="/dashboard/gallery/getCardImages/images/<%= file.image %>" alt="">
+    <a class=" edit-icon-gallery gallery-fas-icons" href="#"><i class="fas fa-edit"></i></a>
+    <a class=" delete-icon-gallery gallery-fas-icons" href="#"><i class="fas fa-trash-alt"></i></a>
   </div>
-    <% if(files) { %>
-    <% files.forEach(function(file) {  %>
-    <div class="gallery-card">
-      <img class="gallery-card-img" src="/dashboard/gallery/getCardImages/images/<%= file.image %>" alt=""><i class="fa fa-times cross-icon" aria-hidden="true"></i>
-      <div class="gallery-card-details">
-        <div class="text">
-          <%= file.details %>
-        </div>
-      </div>
-    </div>
-    <% }) %>
-    <% } else { %>
-    <p> No files to show </p>
-    <% } %>
+  <% }) %>
+  <% } else { %>
+  <div class="container">
+    <h4 class=no-file-msg> No files to show! Please upload new images </h4>
+  </div>
+  <% } %>
+
+</div>
+
+
+<div class="gallery-list-holder" id="list-holder">
+  <a href="" id="#original">ORIGINAL</a>
+  <a href="" id="#big">BIG</a>
+  <a href="" id="#horizontal">HORIZONTAL</a>
+  <a href="" id="#vertical">VERTICAL</a>
+  <!-- <a href="" id="#large">LARGE</a> -->
 </div>
 
 <% if(files) { %>
@@ -30,20 +47,29 @@
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <% files.forEach(function(file) {  %>
-        <div class="slides">
-          <div class="modal-header">
-            <h5 class="modal-title">Gallery</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <img class="gallery-modal-img gallery-card-img" src="/dashboard/gallery/getCardImages/images/<%= file.image %>" alt="modal image">
-            <div name= "gallery-card-details" class="gallery-modal-text">
-              <%= file.details %>
+      <div class="slides">
+        <div class="modal-header">
+          <h5 class="modal-title">Gallery</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img class="gallery-modal-img" src="/dashboard/gallery/getCardImages/images/<%= file.image %>" alt="modal image">
+
+          <form class="" action="/dashboard/gallery/edit" method="post">
+            <div class="form-group">
+              <label class="col-form-label" for="inputDefault">Details input</label>
+              <input style="visibility:hidden" type="text" name="editDetailsImagePath" value=<%= file.image %>></input>
+              <input type="text" class="form-control" name="editDetailsGallery" value="<%=file.details%>" placeholder="Enter or update details" autocomplete="off">
             </div>
+            <button type="submit" name="button">update details</button>
+          </form>
+          <div name="gallery-card-details" class="gallery-modal-text">
+            <%= file.details %>
           </div>
         </div>
+      </div>
       <% }) %>
 
       <div class="modal-footer">
@@ -55,12 +81,10 @@
   </div>
 </div>
 
-<% } else { %>
-<p> No files to show </p>
 <% } %>
 
-
-<div class="container w-25">
+<br><br>
+<div class="container " style="width:28rem">
   <div class="card h-100">
     <form id="galleryCardImageUploadForm" class="" action="/dashboard/gallery/uploadCardImages" method="post" enctype="multipart/form-data">
       <div class="card-body">
@@ -72,13 +96,13 @@
         </div>
         <div class="form-group">
           <label class="col-form-label" for="inputDefault">Details</label>
-          <input type="text" name="newGalleryCardItemDetails" class="form-control i-card-title" placeholder="Default details" id="inputDefault">
+          <input type="text" name="newGalleryCardItemDetails" class="form-control i-card-title" placeholder="Enter new details" id="inputDefault" autocomplete="off">
         </div>
         <div class="card-footer">
           <button type="submit" class="btn btn-primary btn-block submit-btn">Submit</button>
         </div>
       </div>
-   </form>
+    </form>
   </div>
 </div>
 <br>
