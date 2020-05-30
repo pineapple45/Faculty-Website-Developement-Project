@@ -8,7 +8,7 @@ const {
 module.exports = function(values){
   const storage = values.storage;
   const gfs = values.gfs;
-  
+
   return multer({ storage:storage,
                   limits:{
                   fileSize:150000,
@@ -31,7 +31,7 @@ module.exports = function(values){
                               cb(null, true);
                           }
                           else{
-                            return cb(new Error('Image with same name already exists in databse.Upload with different name'));
+                            return cb(new Error('Image with same name already exists in database.Upload with different name'));
                           }
                         }).catch(err =>{
                           console.error(err);

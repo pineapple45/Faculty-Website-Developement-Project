@@ -45,6 +45,9 @@ io.on('connection', function(socket) {
     else if(href.includes('latest-research')){
       Item = model.latestResearchItem;
     }
+    else if(href.includes('dashboard')){
+      Item = model.dashboardItem;
+    }
 
 
     function swap() {

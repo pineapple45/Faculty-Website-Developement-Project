@@ -248,6 +248,13 @@ io.on('connection', function(socket) {
 });
 
 
+io.on('connection', function(socket) {
+  socket.on('cardEditData', (data) => {
+   
+
+  });
+});
+
 // edit title and details and card
 
 router.post("/editCard", function(req, res) {
