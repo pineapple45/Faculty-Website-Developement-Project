@@ -25,8 +25,6 @@ var href = window.location.href;
 
 // Add event Listeners
 dragdivp.forEach((item, i) => {
-  // console.log(item.previousElementSibling.children[0].innerHTML);
-  // console.log(item.previousElementSibling.children[2].innerHTML);
 
   item.addEventListener('dragstart', () => {
     item.className += ' hold';
@@ -35,33 +33,23 @@ dragdivp.forEach((item, i) => {
     starttext.subject = item.previousElementSibling.children[0].innerHTML;
     startindex = i;
     starttextid = item.previousElementSibling.children[2].innerHTML;
-    // socket.emit('dragtext', {
-    //   startindex: startindex,
-    //   starttext: starttext
-    // });
-
   });
 
   item.addEventListener('dragend', () => {
     item.className = 'dragtext';
-    // socket.emit('dragtext',item.innerHTML);
   });
-  // console.log(item);
 
   item.addEventListener('dragover', (e) => {
     e.preventDefault();
-    // socket.emit('dragtext',"Hovered");
   });
 
   item.addEventListener('dragenter', (e) => {
     e.preventDefault();
     item.className += ' hovered';
-    // socket.emit('dragtext',"entered");
   });
 
   item.addEventListener('dragleave', () => {
     item.className = 'dragtext';
-    // socket.emit('dragtext',"left");
   });
 
   item.addEventListener('drop', () => {

@@ -46,7 +46,6 @@ module.exports = function(values){
           req.flash('success_msg', "images added to carausal");
           res.redirect('back');
         }).catch(err => {
-          console.error(err);
           console.log(err);
         });
       }

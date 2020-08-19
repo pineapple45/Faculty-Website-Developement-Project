@@ -1,9 +1,4 @@
 const multer = require('multer');
-
-const {
-  ensureAuthenticated
-} = require('../../config/auth');
-
 module.exports = function(values){
   const Item = values.Item;
   const uploadCardImages = values.uploadCardImages;
@@ -23,7 +18,7 @@ module.exports = function(values){
 
   const upload = uploadCardImages.single('image');
 
-  router.post('/uploadCardImages',(req,res) => {
+  router.post('/uploadCardData',(req,res) => {
 
         if(uploadImageName === ""){
           req.flash('error',"No image Selected");
@@ -65,9 +60,7 @@ module.exports = function(values){
                   }
                   //image exists
                   req.flash('success_msg',"Images added");
-                  // res.redirect('back');
                  }).catch(err =>{
-                   console.error(err);
                    console.log(err);
                  });
 
@@ -82,14 +75,13 @@ module.exports = function(values){
                          pos: val
                        });
 
-                       item.save();
-                       req.flash('success_msg',"Details added");
-
-                       res.redirect("back");
+                       item.save().then(() =>{
+                        req.flash('success_msg',"Details added");
+                        res.redirect("back");
+                       });
 
                  }).catch(err =>{
                      if(err){
-                       console.error(err);
                        console.log(err);
                     }
                  })

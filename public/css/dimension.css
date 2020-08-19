@@ -1,5 +1,6 @@
 body{
   background-color: #f4f4f4;
+  overflow-x: hidden;
 }
 
 .dragdiv-p{
@@ -90,31 +91,6 @@ body{
     border-radius: 50%;
     opacity: 0.6;
   }
-
-  /* position: absolute;
-  top: 50%;
-  height: 40px;
-  bottom: 0;
-  z-index: 1;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  width: 40px;
-  color: black;
-  background-color: black;
-  text-align: center;
-  border: red;
-  border-radius: 50%;
-  opacity: 0.5;
-  -webkit-transition: opacity 0.15s ease;
-  transition: opacity 0.15s ease; */
-
 
 /* styling carausal add image button */
 

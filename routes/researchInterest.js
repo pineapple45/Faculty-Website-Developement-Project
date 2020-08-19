@@ -12,11 +12,6 @@ const path = require("path");
 const bcrypt = require('bcryptjs');
 const merthodOverride = require('method-override');
 
-const {
-  ensureAuthenticated
-} = require('../config/auth');
-
-
 // DB Config
 const db = require('../config/keys').MongoURI;
 
@@ -51,7 +46,7 @@ function foo(){
 let gfs;
 
 //InterItem model
-const model = require('../models/InterestItem');
+const model = require('../models/Item');
 const InterestItem = model.interestItem;
 const Item = InterestItem;
 
@@ -119,7 +114,7 @@ foo().then( res => {
 
 foo().then( res => {
  gfs = res;
- require("./get/deleteCarausalImages")({
+ require("./post/deleteCarausalImages")({
    gfs: gfs,
    router: router,
    collectionName: collectionName,

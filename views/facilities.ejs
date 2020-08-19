@@ -12,7 +12,9 @@
   <div class="row row-cols-1 row-cols-md-3">
     <% if(files) { %>
     <% files.forEach(function(file) {  %>
-    <%- include("./partials/card",{file:file,renderedPage:'/facilities'})%>
+    <form action="/dashboard/facilities/deleteCardData" method="post" enctype="multipart/form-data">
+      <%- include("./partials/card",{file:file,renderedPage:'/facilities'})%>
+    </form>  
     <% }) %>
     <% } else { %>
     <p> No files to show </p>
@@ -21,8 +23,8 @@
 
     <div class="col mb-4">
       <div class="card h-100">
-        <form id="cardImageUploadForm" class="" action="/dashboard/facilities/uploadCardImages" method="post" enctype="multipart/form-data">
-          <%- include("./partials/posts/uploadCardImages")%>
+        <form id="cardImageUploadForm" class="" action="/dashboard/facilities/uploadCardData" method="post" enctype="multipart/form-data">
+          <%- include("./partials/posts/uploadCardData")%>
         </form>
       </div>
     </div>

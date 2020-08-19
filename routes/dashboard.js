@@ -9,21 +9,15 @@ const crypto = require('crypto');
 const path = require("path");
 const bcrypt = require('bcryptjs');
 
-const {
-  ensureAuthenticated
-} = require('../config/auth');
-
-
-
 // DB Config
 const db = require('../config/keys').MongoURI;
 mongoose.set('useFindAndModify', false);
 
 
 //dashboardDetails model
-const secondmodel = require('../models/InterestItem');
-const DashboardItem = secondmodel.dashboardItem;
-const AnotherItem = DashboardItem;
+const secondmodel = require('../models/Item');
+const AnotherItem = secondmodel.dashboardItem;
+// const AnotherItem = DashboardItem;
 
 // require("./get/generic")({router:router,Item:AnotherItem,renderedPage:'dashboard'});
 
@@ -32,8 +26,6 @@ require("./post/generic")({router:router,Item:AnotherItem});
 require("./post/delete")({router:router,Item:AnotherItem});
 
 require("./post/edit")({router:router,Item:AnotherItem});
-
-
 
 
 const collectionName = 'dashboardCardImage';
@@ -76,24 +68,10 @@ function getfoo() {
 }
 
 
-// let editItemId;
-let facilityEditItemName;
-
-
-// Facility model
-const model = require('../models/FacilityItem');
-const DashBoardCardItem = model.dashBoardCardItem;
-const CardItem = DashBoardCardItem;
-
-// foo().then(res => {
-//   gfs = res;
-//   require('./get/secondgeneric')({
-//     router: router,
-//     gfs: gfs,
-//     renderedPage: 'dashboard',
-//     Item:CardItem,
-//   });
-// });
+// CardItem model
+const model = require('../models/CardItem');
+const CardItem = model.dashBoardCardItem;
+// const CardItem = DashBoardCardItem;
 
 router.get("/", function(req, res) {
 
@@ -174,7 +152,7 @@ router.get("/", function(req, res) {
 // @desc uploads file to // DB
 
 getfoo().then(res => {
-  require("./post/uploadCardImage")({
+  require("./post/uploadCardData")({
     Item: CardItem,
     uploadCardImages: res.uploadCardImages,
     gfs: res.gfs,
@@ -208,21 +186,27 @@ foo().then(res => {
   })
 });
 
+//delete cardData
+getfoo().then(res => {
+  require("./post/deleteCardData")({
+    Item: Item,
+    uploadCardImages: res.uploadCardImages,
+    gfs: res.gfs,
+    router: router,
+    collectionName: collectionName
+  })
+})
+
 //delete cardDetails
 
-foo().then(res => {
-  gfs = res;
-  require("./deleteCardDetails")({
-    collectionName: collectionName,
-    gfs: gfs,
-    Item: CardItem
-  })
-});
-
-// require("./editCardDetails")({
-//   router: router,
-//   Item: CardItem
-// })
+// foo().then(res => {
+//   gfs = res;
+//   require("./deleteCardDetails")({
+//     collectionName: collectionName,
+//     gfs: gfs,
+//     Item: CardItem
+//   })
+// });
 
 
 io.on('connection', function(socket) {
@@ -240,22 +224,13 @@ io.on('connection', function(socket) {
         }
       });
     }).catch(err => {
-      console.error(err);
       console.log(err);
     });
 
   });
 });
 
-
-io.on('connection', function(socket) {
-  socket.on('cardEditData', (data) => {
-   
-
-  });
-});
-
-// edit title and details and card
+// edit title and details of card
 
 router.post("/editCard", function(req, res) {
   const cardItemTitle = req.body.newCardItemTitle;
@@ -274,14 +249,12 @@ router.post("/editCard", function(req, res) {
           console.log('Card values updated successfully');
           res.redirect('back');
         }).catch(err => {
-          console.error(err);
           console.log(err);
         });
       }
     });
   }).catch(err => {
     if (err) {
-      console.error(err);
       console.log(err);
     }
   });

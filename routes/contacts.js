@@ -9,10 +9,6 @@ const crypto = require('crypto');
 const path = require("path");
 const bcrypt = require('bcryptjs');
 
-const {
-  ensureAuthenticated
-} = require('../config/auth');
-
 // DB Config
 const db = require('../config/keys').MongoURI;
 mongoose.set('useFindAndModify', false);
@@ -20,10 +16,10 @@ mongoose.set('useFindAndModify', false);
 
 //vacancyItem model
 const model = require('../models/Item');
-const BookItem = model.bookItem;
-const Item = BookItem;
+const ContactsItem = model.contactsItem;
+const Item = ContactsItem;
 
-require("./get/generic")({router:router,Item:Item,renderedPage:'book-and-book-chapters'});
+require("./get/generic")({router:router,Item:Item,renderedPage:'contacts'});
 
 require("./post/generic")({router:router,Item:Item});
 

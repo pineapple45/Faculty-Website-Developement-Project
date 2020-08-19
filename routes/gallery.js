@@ -58,10 +58,6 @@ function getfoo() {
 
 mongoose.set('useFindAndModify', false);
 
-// let editItemId;
-let facilityEditItemName;
-
-
 // GalleryCardItem model
 const Item = require('../models/GalleryItem');
 
@@ -165,26 +161,6 @@ io.on('connection', (socket) => {
       console.log(err);
     })
 
-
-    // Item.find().then(docs => {
-    //   docs.forEach((doc, i) => {
-    //     if (imageName === doc.image) {
-    //       Item.deleteOne({
-    //         image: doc.image
-    //       }).then(() => {
-    //         console.log('Image subject and details successfully deleted');
-    //         socket.emit('reloadPage', 'reload');
-    //       }).catch(err => {
-    //         console.error(err);
-    //         console.log(err);
-    //       });
-    //     }
-    //   });
-    // }).catch(err => {
-    //   console.error(err);
-    //   console.log(err);
-    // });
-
   })
 })
 
@@ -215,6 +191,7 @@ io.on('connection',(socket) =>{
     if(data === 'removeClasses')
     {
       removeAllClasses();
+      socket.emit('reloadPage', 'reload');
     }
   })
 })
@@ -225,6 +202,7 @@ io.on('connection',(socket)=>{
     const parentId = data.parentId;
     const addableClass = data.class;
     addClass(parentId,addableClass);
+    socket.emit('reloadPage', 'reload');
   })
 })
 
@@ -233,6 +211,7 @@ io.on('connection',(socket)=>{
   socket.on('removeOrignalClass',(id)=>{
     const parentId = id;
     removeClass(parentId);
+    socket.emit('reloadPage', 'reload');
   })
 })
 
@@ -241,6 +220,7 @@ io.on('connection',(socket)=>{
     const parentId = data.parentId;
     const addableClass = data.class;
     addClass(parentId,addableClass);
+    socket.emit('reloadPage', 'reload');
   })
 })
 
@@ -248,6 +228,7 @@ io.on('connection',(socket)=>{
   socket.on('removeBigClass',(id)=>{
     const parentId = id;
     removeClass(parentId);
+    socket.emit('reloadPage', 'reload');
   })
 })
 
@@ -257,7 +238,7 @@ io.on('connection',(socket)=>{
     const parentId = data.parentId;
     const addableClass = data.class;
     addClass(parentId,addableClass);
-
+    socket.emit('reloadPage', 'reload');
   })
 })
 
@@ -265,6 +246,7 @@ io.on('connection',(socket)=>{
   socket.on('removeHorizontalClass',(id)=>{
     const parentId = id;
     removeClass(parentId);
+    socket.emit('reloadPage', 'reload');
   })
 })
 
@@ -274,10 +256,114 @@ io.on('connection',(socket)=>{
     const parentId = data.parentId;
     const addableClass = data.class;
     addClass(parentId,addableClass);
-
+    socket.emit('reloadPage', 'reload');
   })
 })
 
+io.on('connection',(socket)=>{
+  socket.on('largeClass',(data)=>{
+    const parentId = data.parentId;
+    const addableClass = data.class;
+    addClass(parentId,addableClass);
+    socket.emit('reloadPage', 'reload');
+  })
+})
+
+io.on('connection',(socket)=>{
+  socket.on('horizontalLargeClass',(data)=>{
+    const parentId = data.parentId;
+    const addableClass = data.class;
+    addClass(parentId,addableClass);
+    socket.emit('reloadPage', 'reload');
+  })
+})
+
+
+io.on('connection',(socket)=>{
+  socket.on('verticalLargeClass',(data)=>{
+    const parentId = data.parentId;
+    const addableClass = data.class;
+    addClass(parentId,addableClass);
+    socket.emit('reloadPage', 'reload');
+  })
+})
+
+
+io.on('connection',(socket)=>{
+  socket.on('spaceClass',(data)=>{
+    const parentId = data.parentId;
+    const addableClass = data.class;
+    addClass(parentId,addableClass);
+    socket.emit('reloadPage', 'reload');
+  })
+})
+
+
+io.on('connection',(socket)=>{
+  socket.on('spaceHorizontalClass',(data)=>{
+    const parentId = data.parentId;
+    const addableClass = data.class;
+    addClass(parentId,addableClass);
+    socket.emit('reloadPage', 'reload');
+  })
+})
+
+
+io.on('connection',(socket)=>{
+  socket.on('spaceVerticalClass',(data)=>{
+    const parentId = data.parentId;
+    const addableClass = data.class;
+    addClass(parentId,addableClass);
+    socket.emit('reloadPage', 'reload');
+  })
+})
+
+io.on('connection',(socket)=>{
+  socket.on('xlClass',(data)=>{
+    const parentId = data.parentId;
+    const addableClass = data.class;
+    addClass(parentId,addableClass);
+    socket.emit('reloadPage', 'reload');
+  })
+})
+
+io.on('connection',(socket)=>{
+  socket.on('horizontalExtraLargeClass',(data)=>{
+    const parentId = data.parentId;
+    const addableClass = data.class;
+    addClass(parentId,addableClass);
+    socket.emit('reloadPage', 'reload');
+  })
+})
+
+
+io.on('connection',(socket)=>{
+  socket.on('verticalExtraLargeClass',(data)=>{
+    const parentId = data.parentId;
+    const addableClass = data.class;
+    addClass(parentId,addableClass);
+    socket.emit('reloadPage', 'reload');
+  })
+})
+
+io.on('connection',(socket)=>{
+  socket.on('xxlClass',(data)=>{
+    const parentId = data.parentId;
+    const addableClass = data.class;
+    addClass(parentId,addableClass);
+    socket.emit('reloadPage', 'reload');
+  })
+})
+
+
+io.on('connection',(socket)=>{
+  socket.on('xxxlClass',(data)=>{
+    const parentId = data.parentId;
+    const addableClass = data.class;
+    addClass(parentId,addableClass);
+    socket.emit('reloadPage', 'reload');
+  })
+})
 
 
 function addClass(parentId,addableClass){
@@ -286,7 +372,6 @@ function addClass(parentId,addableClass){
       ClassItem.updateOne({parentId:parentId},{addedClass:addableClass}).then(() =>{
         console.log("already present class updated");
         getFilesOfClasses();
-
       })
     }else{
       const item = new ClassItem({

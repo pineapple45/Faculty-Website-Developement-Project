@@ -17,6 +17,7 @@ const ItemSchema = new mongoose.Schema({
 
 const interestItem = mongoose.model('InterestItem',ItemSchema);
 const vacancyItem = mongoose.model('VacancyItem',ItemSchema);
+const contactsItem = mongoose.model('ContactsItem',ItemSchema);
 const journalsItem = mongoose.model('JournalsItem',ItemSchema);
 const bookItem = mongoose.model('BookItem',ItemSchema);
 const groupActivitiesItem = mongoose.model('GroupActivitiesItem',ItemSchema);
@@ -31,6 +32,7 @@ const dashboardItem = mongoose.model('DashboardItem',ItemSchema);
 module.exports = {
   interestItem: interestItem,
   vacancyItem: vacancyItem,
+  contactsItem: contactsItem,
   journalsItem: journalsItem,
   bookItem: bookItem,
   groupActivitiesItem: groupActivitiesItem,

@@ -80,10 +80,11 @@ module.exports = function(values){
                          pos: val
                        });
 
-                       item.save();
-                       req.flash('success_msg',"Details added");
-
-                       res.redirect("back");
+                       item.save().then(() =>{
+                        req.flash('success_msg',"Details added");
+                        res.redirect("back");
+                       });
+                      
 
                  }).catch(err =>{
                      if(err){

@@ -13,8 +13,9 @@ module.exports = function(value){
             pos: val
           });
 
-          item.save();
-          res.redirect("back");
+          item.save().then(() =>{
+            res.redirect("back");
+          });
 
     }).catch(err =>{
         if(err){

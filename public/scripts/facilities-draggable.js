@@ -34,11 +34,11 @@ deleteBtn.forEach((item, i) => {
   });
 });
 
-socket.on('reloadPage',(data)=>{
-  if(data === 'reload'){
-    location.reload();
-  }
-});
+// socket.on('reloadPage',(data)=>{
+//   if(data === 'reload'){
+//     location.reload();
+//   }
+// });
 
 
 editBtn.forEach((item, i) => {

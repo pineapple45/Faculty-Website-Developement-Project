@@ -63,7 +63,7 @@ let facilityEditItemName;
 
 
 // Facility model
-const model = require('../models/FacilityItem');
+const model = require('../models/CardItem');
 const FacilityItem = model.facilityItem;
 const Item = FacilityItem;
 
@@ -91,7 +91,19 @@ foo().then(res => {
 // @desc uploads file to // DB
 
 getfoo().then(res => {
-  require("./post/uploadCardImage")({
+  require("./post/uploadCardData")({
+    Item: Item,
+    uploadCardImages: res.uploadCardImages,
+    gfs: res.gfs,
+    router: router,
+    collectionName: collectionName
+  })
+})
+
+
+//delete cardData
+getfoo().then(res => {
+  require("./post/deleteCardData")({
     Item: Item,
     uploadCardImages: res.uploadCardImages,
     gfs: res.gfs,
@@ -127,16 +139,16 @@ foo().then(res => {
 
 //delete cardDetails
 
-foo().then(res => {
-  gfs = res;
-  require("./deleteCardDetails")({
-    collectionName: collectionName,
-    gfs: gfs,
-    Item: Item
-  })
-});
+// foo().then(res => {
+//   gfs = res;
+//   require("./deleteCardDetails")({
+//     collectionName: collectionName,
+//     gfs: gfs,
+//     Item: Item
+//   })
+// });
 
-require("./editCardDetails")({
+require("./post/editCardDetails")({
   router: router,
   Item: Item
 })

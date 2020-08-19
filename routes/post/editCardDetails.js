@@ -1,7 +1,3 @@
-const {
-  ensureAuthenticated
-} = require('../config/auth');
-
 module.exports = function(values){
   const Item = values.Item;
   const router = values.router;
@@ -23,7 +19,6 @@ module.exports = function(values){
           }
         });
       }).catch(err => {
-        console.error(err);
         console.log(err);
       });
 
@@ -50,14 +45,12 @@ module.exports = function(values){
             console.log('Card values updated successfully');
             res.redirect('back');
           }).catch(err => {
-            console.error(err);
             console.log(err);
           });
         }
       });
     }).catch(err => {
       if (err) {
-        console.error(err);
         console.log(err);
       }
     });

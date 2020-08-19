@@ -4,7 +4,7 @@
       <% if(files) { %>
       <div class="carousel-item active">
         <form action="/dashboard/<%= renderedPage %>/getCarausalImages/images/<%= files[0]._id %>?_method=DELETE" method="post">
-          <button class="btn btn-danger minus-btn">DELETE</button>
+          <button class="btn btn-danger minus-btn" type="submit">DELETE</button>
         </form>
         <img src="/dashboard/<%= renderedPage %>/getCarausalImages/images/<%= files[0].filename %>" class="d-block w-100 car-img" alt="carausal-image">
       </div>
@@ -12,7 +12,7 @@
       <% if(index != 0) { %>
       <div class="carousel-item">
         <form action="/dashboard/<%= renderedPage %>/getCarausalImages/images/<%= file._id %>?_method=DELETE" method="post">
-          <button class="btn btn-danger minus-btn">Delete</button>
+          <button class="btn btn-danger minus-btn" type="submit">Delete</button>
         </form>
         <img src="/dashboard/<%= renderedPage %>/getCarausalImages/images/<%= file.filename %>" class="d-block w-100 car-img" alt="carausal-image">
       </div>

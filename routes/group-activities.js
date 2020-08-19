@@ -21,7 +21,7 @@ mongoose.set('useFindAndModify', false);
 
 
 //vacancyItem model
-const model = require('../models/InterestItem');
+const model = require('../models/Item');
 const GroupActivitiesItem = model.groupActivitiesItem;
 const Item = GroupActivitiesItem;
 

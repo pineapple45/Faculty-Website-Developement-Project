@@ -66,24 +66,25 @@ app.use((req,res,next) => {
 
 //Routes
 app.use('/',require('./routes/index'));
-app.use('/dashboard',ensureAuthenticated,require('./routes/dashboard'));
-app.use('/dashboard/gallery',ensureAuthenticated,require('./routes/gallery'));
-app.use('/dashboard/researchInterest',ensureAuthenticated,require('./routes/researchInterest'));
-app.use('/dashboard/facilities',ensureAuthenticated,require('./routes/facilities'));
-app.use('/dashboard/vacancy',ensureAuthenticated,require('./routes/vacancy'));
-app.use('/dashboard/journals',ensureAuthenticated,require('./routes/journals'));
-app.use('/dashboard/book-and-book-chapters',ensureAuthenticated,require('./routes/book-and-book-chapters'));
-app.use('/dashboard/group-activities',ensureAuthenticated,require('./routes/group-activities'));
-app.use('/dashboard/awards-and-academics',ensureAuthenticated,require('./routes/awards-and-academics'));
-app.use('/dashboard/invited-talks',ensureAuthenticated,require('./routes/invited-talks'));
-app.use('/dashboard/lab-news',ensureAuthenticated,require('./routes/lab-news'));
-app.use('/dashboard/latest-research',ensureAuthenticated,require('./routes/latest-research'));
-app.use('/dashboard/cm-research-scholars',ensureAuthenticated,require('./routes/cm-research-scholars'));
-app.use('/dashboard/cm-internship-students',ensureAuthenticated,require('./routes/cm-internship-students'));
-app.use('/dashboard/cm-project-fellow',ensureAuthenticated,require('./routes/cm-project-fellow'));
-app.use('/dashboard/cm-visiting-faculty',ensureAuthenticated,require('./routes/cm-visiting-faculty'));
-app.use('/dashboard/cm-masters-students',ensureAuthenticated,require('./routes/cm-masters-students'));
-app.use('/dashboard/cm-bachelor-students',ensureAuthenticated,require('./routes/cm-bachelor-students'));
+app.use('/dashboard',require('./routes/dashboard'));
+app.use('/dashboard/gallery',require('./routes/gallery'));
+app.use('/dashboard/researchInterest',require('./routes/researchInterest'));
+app.use('/dashboard/facilities',require('./routes/facilities'));
+app.use('/dashboard/vacancy',require('./routes/vacancy'));
+app.use('/dashboard/contacts',require('./routes/contacts'));
+app.use('/dashboard/journals',require('./routes/journals'));
+app.use('/dashboard/book-and-book-chapters',require('./routes/book-and-book-chapters'));
+app.use('/dashboard/group-activities',require('./routes/group-activities'));
+app.use('/dashboard/awards-and-academics',require('./routes/awards-and-academics'));
+app.use('/dashboard/invited-talks',require('./routes/invited-talks'));
+app.use('/dashboard/lab-news',require('./routes/lab-news'));
+app.use('/dashboard/latest-research',require('./routes/latest-research'));
+app.use('/dashboard/cm-research-scholars',require('./routes/cm-research-scholars'));
+app.use('/dashboard/cm-internship-students',require('./routes/cm-internship-students'));
+app.use('/dashboard/cm-project-fellow',require('./routes/cm-project-fellow'));
+app.use('/dashboard/cm-visiting-faculty',require('./routes/cm-visiting-faculty'));
+app.use('/dashboard/cm-masters-students',require('./routes/cm-masters-students'));
+app.use('/dashboard/cm-bachelor-students',require('./routes/cm-bachelor-students'));
 app.use('/users',require('./routes/users'));
 
 const PORT = process.env.PORT || 5000;

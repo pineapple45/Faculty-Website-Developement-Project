@@ -12,14 +12,70 @@
 }
 
 .vertical{
-   grid-row:  span 2;
-}
-
-.horizontal{
-   grid-column:  span 2;
-}
-
-.big{
     grid-row:  span 2;
+ }
+ 
+ .horizontal{
     grid-column:  span 2;
-}
+ }
+ 
+ .big{
+     grid-row:  span 2;
+     grid-column:  span 2;
+ }
+ 
+ .large{
+     grid-row:  span 3;
+     grid-column:  span 3; 
+ }
+ 
+ .verticalLarge{
+     grid-row:  span 3;
+     grid-column:  span 2; 
+ }
+ 
+ .horizontalLarge{
+     grid-row:  span 2;
+     grid-column:  span 3; 
+ }
+ 
+ .space{
+     grid-row:  span 4;
+     grid-column:  span 4; 
+ }
+ 
+ .spaceVertical{
+     grid-row:  span 4;
+     grid-column:  span 3; 
+ }
+ 
+ .spaceHorizontal{
+     grid-row:  span 3;
+     grid-column:  span 4; 
+ }
+ 
+ .xl{
+     grid-row:  span 5;
+     grid-column:  span 5;  
+ }
+ 
+ .verticalExtraLarge{
+     grid-row:  span 5;
+     grid-column:  span 3; 
+ }
+ 
+ .horizontalExtraLarge{
+     grid-row:  span 3;
+     grid-column:  span 5; 
+ }
+ 
+ .xxl{
+     grid-row:  span 6;
+     grid-column:  span 6;  
+ }
+ 
+ .xxxl{
+     grid-row:  span 8;
+     grid-column:  span 8;  
+ }
+ 

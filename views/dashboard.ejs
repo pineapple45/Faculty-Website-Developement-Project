@@ -44,6 +44,7 @@
           <%- include("./partials/posts/generic"); %>
 
         </form>
+
       </div>
     </div>
 
@@ -64,7 +65,9 @@
         <div class="row row-cols-1">
           <% if(files) { %>
           <% files.forEach(function(file) {  %>
-          <%- include("./partials/card",{file:file,renderedPage:''})%>
+            <form action="/dashboard/deleteCardData" method="post" enctype="multipart/form-data">
+              <%- include("./partials/card",{file:file,renderedPage:''})%>
+            </form>  
           <% }) %>
           <% } else { %>
           <p> No files to show </p>
@@ -73,8 +76,8 @@
 
           <div class="dashboard-upload-card col mb-4">
             <div class="card h-100">
-              <form id="cardImageUploadForm" class="" action="/dashboard/uploadCardImages" method="post" enctype="multipart/form-data">
-                <%- include("./partials/posts/uploadCardImages")%>
+              <form id="cardImageUploadForm" class="" action="/dashboard/uploadCardData" method="post" enctype="multipart/form-data">
+                <%- include("./partials/posts/uploadCardData")%>
               </form>
             </div>
           </div>

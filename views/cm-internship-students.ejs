@@ -11,7 +11,9 @@
   <div class="row row-cols-1 row-cols-md-3">
     <% if(files) { %>
     <% files.forEach(function(file) {  %>
-    <%- include("./partials/card",{file:file,renderedPage:'/cm-internship-students'})%>
+      <form action="/dashboard/cm-internship-students/deleteCardData" method="post" enctype="multipart/form-data">
+        <%- include("./partials/card",{file:file,renderedPage:'/cm-internship-students'})%>
+      </form>
     <% }) %>
     <% } else { %>
     <p> No files to show </p>
@@ -20,8 +22,8 @@
 
     <div class="col mb-4">
       <div class="card h-100">
-        <form id="cardImageUploadForm" class="" action="/dashboard/cm-internship-students/uploadCardImages" method="post" enctype="multipart/form-data">
-          <%- include("./partials/posts/uploadCardImages")%>
+        <form id="cardImageUploadForm" class="" action="/dashboard/cm-internship-students/uploadCardData" method="post" enctype="multipart/form-data">
+          <%- include("./partials/posts/uploadCardData")%>
         </form>
       </div>
     </div>

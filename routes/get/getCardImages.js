@@ -1,6 +1,3 @@
-const {
-  ensureAuthenticated
-} = require('../../config/auth');
 
 module.exports = function(values){
   const router = values.router;

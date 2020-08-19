@@ -3,26 +3,30 @@ const mongoose = require("mongoose");
 
 
 io.on('connection', function(socket) {
-  console.log('made socket connection' + socket.id);
+  // console.log('made socket connection' + socket.id);
 
   socket.on('dragdiv', (data) => {
+    // console.log(data);
 
-    var startindex = data.startindex;
-    var starttextid = data.starttextid;
-    var starttext = data.starttext;
-    var endindex = data.endindex;
-    var endtextid = data.endtextid;
-    var endtext = data.endtext;
-    var href = data.href;
+    let startindex = data.startindex;
+    let starttextid = data.starttextid;
+    let starttext = data.starttext;
+    let endindex = data.endindex;
+    let endtextid = data.endtextid;
+    let endtext = data.endtext;
+    let href = data.href;
     io.sockets.emit('dragdiv', data);
-    const model = require('../models/InterestItem');
-    var Item = {};
+    const model = require('../models/Item');
+    let Item = {};
 
     if(href.includes('researchInterest')){
       Item = model.interestItem;
     }
     else if(href.includes('vacancy')){
       Item = model.vacancyItem;
+    }
+    else if(href.includes('contacts')){
+      Item = model.contactsItem;
     }
     else if(href.includes('journals')){
       Item = model.journalsItem;
@@ -71,8 +75,8 @@ io.on('connection', function(socket) {
       });
     }
 
-    async function init() {
-      await swap();
+    function init() {
+     swap();
       console.log('Items swapped successfully!!');
     }
 

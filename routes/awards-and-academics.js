@@ -9,10 +9,6 @@ const crypto = require('crypto');
 const path = require("path");
 const bcrypt = require('bcryptjs');
 
-const {
-  ensureAuthenticated
-} = require('../config/auth');
-
 
 
 // DB Config
@@ -21,7 +17,7 @@ mongoose.set('useFindAndModify', false);
 
 
 //vacancyItem model
-const model = require('../models/InterestItem');
+const model = require('../models/Item');
 const AwardsAcademicsItem = model.awardsAcademicsItem;
 const Item = AwardsAcademicsItem;
 
