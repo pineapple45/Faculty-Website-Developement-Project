@@ -18,16 +18,14 @@ mongoose.set('useFindAndModify', false);
 const { connect } = require('http2');
 const { response } = require('express');
 
-const PORT = process.env.PORT || 5000;
-
 router.get('/', (req, res) => {
 
-    const url1 = `http://localhost:${PORT}/dashboard/cm-research-scholars/getCardData`;
-    const url2 = `http://localhost:${PORT}/dashboard/cm-internship-students/getCardData`;
-    const url3 = `http://localhost:${PORT}/dashboard/cm-project-fellow/getCardData`;
-    const url4 = `http://localhost:${PORT}/dashboard/cm-visiting-faculty/getCardData`;
-    const url5 = `http://localhost:${PORT}/dashboard/cm-masters-students/getCardData`;
-    const url6 = `http://localhost:${PORT}/dashboard/cm-bachelor-students/getCardData`;
+    const url1 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-research-scholars/getCardData`;
+    const url2 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-internship-students/getCardData`;
+    const url3 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-project-fellow/getCardData`;
+    const url4 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-visiting-faculty/getCardData`;
+    const url5 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-masters-students/getCardData`;
+    const url6 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-bachelor-students/getCardData`;
 
     const request1 = axios.get(url1);
     const request2 = axios.get(url2);

@@ -19,16 +19,14 @@ const { connect } = require('http2');
 const { response } = require('express');
 const { Console } = require('console');
 
-const PORT = process.env.PORT || 5000;
-
 router.get('/', (req, res) => {
     
-    const url1 = `http://localhost:${PORT}/dashboard/allumni-research-scholars/getCardData`;
-    const url2 = `http://localhost:${PORT}/dashboard/allumni-internship-students/getCardData`;
-    const url3 = `http://localhost:${PORT}/dashboard/allumni-project-fellow/getCardData`;
-    const url4 = `http://localhost:${PORT}/dashboard/allumni-visiting-faculty/getCardData`;
-    const url5 = `http://localhost:${PORT}/dashboard/allumni-masters-students/getCardData`;
-    const url6 = `http://localhost:${PORT}/dashboard/allumni-bachelor-students/getCardData`;
+    const url1 = `http://${process.env.HEROKU_BASE_URL}/dashboard/allumni-research-scholars/getCardData`;
+    const url2 = `http://${process.env.HEROKU_BASE_URL}/dashboard/allumni-internship-students/getCardData`;
+    const url3 = `http://${process.env.HEROKU_BASE_URL}/dashboard/allumni-project-fellow/getCardData`;
+    const url4 = `http://${process.env.HEROKU_BASE_URL}/dashboard/allumni-visiting-faculty/getCardData`;
+    const url5 = `http://${process.env.HEROKU_BASE_URL}/dashboard/allumni-masters-students/getCardData`;
+    const url6 = `http://${process.env.HEROKU_BASE_URL}/dashboard/allumni-bachelor-students/getCardData`;
 
     const request1 = axios.get(url1);
     const request2 = axios.get(url2);
