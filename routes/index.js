@@ -9,4 +9,5 @@ const {
 //Dashboard Redirect middleware
 router.get('/', (req, res) => res.redirect('/dashboard'));
 
+
 module.exports = router;
