@@ -12,7 +12,7 @@ module.exports = function(values){
     }).then(image => {
       //check if images
       if (!image || image.length === 0) {
-        return res.status(404).json({
+        return res.json({
           err: 'No image found'
         });
       }

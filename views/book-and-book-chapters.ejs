@@ -9,38 +9,41 @@
 <br>
 
 <div class="container">
-  <% if(newItems) { %>
+  <div class="all-posts-container">
+    <% if(newItems) { %>
 
-  <% newItems.forEach((item, i) => { %>
+      <% newItems.forEach((item, i) => { %>
+    
+      <form class="item" action="/dashboard/book-and-book-chapters/delete" method="post">
+    
+        <%- include("./partials/posts/delete",{item:item}); %>
+    
+      </form>
+    
+      <% }); %>
+      <% } else { %>
+        <div class="container text-center">
+          <h5>No notes to show. Enter subject and details to show up on the screen.</h5>
+        </div>
+      <% } %>
+  </div>
 
-  <form class="item" action="/dashboard/book-and-book-chapters/delete" method="post">
 
-    <%- include("./partials/posts/delete",{item:item}); %>
+      
+      <!-- Modal -->
+      <form class="item" action="/dashboard/book-and-book-chapters/edit" method="post">
+    
+        <%- include("./partials/posts/edit"); %>
+    
+      </form>
+    
+      <br>
 
-  </form>
+      <form class="item" action="/dashboard/book-and-book-chapters" method="post">
 
+        <%- include("./partials/posts/generic"); %>
 
-  <!-- Modal -->
-  <form class="item" action="/dashboard/book-and-book-chapters/edit" method="post">
-
-    <%- include("./partials/posts/edit"); %>
-
-  </form>
-
-  <br>
-
-  <% }); %>
-  <% } else { %>
-    <div class="container text-center">
-      <h5>No notes to show. Enter subject and details to show up on the screen.</h5>
-    </div>
-  <% } %>
-
-  <form class="item" action="/dashboard/book-and-book-chapters" method="post">
-
-    <%- include("./partials/posts/generic"); %>
-
-  </form>
+      </form>
 </div>
 
 <hr>

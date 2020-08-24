@@ -78,6 +78,16 @@ foo().then(res => {
 });
 
 
+foo().then(res => {
+  gfs = res;
+  require('./get/getCardData')({
+    router: router,
+    gfs: gfs,
+    renderedPage: 'cm-research-scholars',
+    Item:Item,
+  });
+});
+
 
 // @route POST /dashboard/facilities/uploadFacilityImages
 // @desc uploads file to // DB

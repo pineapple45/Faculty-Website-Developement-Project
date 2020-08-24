@@ -10,17 +10,22 @@ module.exports = function(value){
           const item = new Item({
             subject: itemSubject,
             details: itemDetails,
-            pos: val
+            pos: val,
+            timeStamp: Date.now()
           });
 
           item.save().then(() =>{
             res.redirect("back");
+          }).catch(err =>{
+            console.log(err);
+            req.flash('error', err.message);
+            res.redirect('back');
           });
 
     }).catch(err =>{
         if(err){
-          console.error(err);
-          console.log(err);      }
+          console.log(err); 
+        }
     })
   });
 }

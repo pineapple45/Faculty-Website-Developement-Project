@@ -9,7 +9,7 @@ const ItemSchema = new mongoose.Schema({
   },
   pos:{
     type: Number,
-  }
+  },
 })
 
 const galleryCardItem = mongoose.model('GalleryCardItem',ItemSchema);

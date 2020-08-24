@@ -1,0 +1,34 @@
+<!-- Header ejs -->
+<%- include("./partials/cm-tabs",{headerTitle:'CURRENT MEMBERS'}) %>
+<br><br>
+<div class="container">
+  <div class="container">
+    <div class="row">
+      <%- include("./partials/searchBar",{searchId: 'search'}) %>
+      <br>
+      <%- include("./partials/dropdown",{title:'Sort By'}); %>
+    </div>
+  </div>
+ 
+  <br>
+
+  <div id='image-cards-container' class="row row-cols-1 row-cols-md-3">
+    <% if(files) { %>
+    <% files.forEach(function(file) {  %>
+        <div class="image-card col mb-4">
+          <p id='timestamp' style="display: none;"><%= file.timeStamp%></p>
+            <div class="card h-100">
+              <img src=<%= file.imageURL %> class="card-img-top card-image" alt="...">
+              <div class="card-body">
+                <h5 class="card-title o-card-title"><%= file.title %></h5>
+                <p class="card-text o-card-details"><%- file.details %></p>
+              </div>
+            </div>
+          </div>
+    <% }) %>
+    <% } else { %>
+    <p> No files to show </p>
+    <% } %>
+
+  </div>
+</div>

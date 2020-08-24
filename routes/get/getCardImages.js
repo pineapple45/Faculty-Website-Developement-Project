@@ -7,7 +7,7 @@ module.exports = function(values){
     gfs.files.find().toArray().then(images => {
       //check if images
       if (!images || images.length === 0) {
-        return res.status(404).json({
+        return res.json({
           err: 'No images found'
         });
       }

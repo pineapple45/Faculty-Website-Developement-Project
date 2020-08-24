@@ -12,40 +12,42 @@
       <br>
 
       <div class="container">
-        <% if(newItems) { %>
+        <div class="all-posts-container">
+          <% if(newItems) { %>
 
-        <% newItems.forEach((item, i) => { %>
-
-        <form class="item" action="/dashboard/delete" method="post">
-
-          <%- include("./partials/posts/delete",{item:item}); %>
-
-        </form>
-
-
-        <!-- Modal -->
-        <form class="item" action="/dashboard/edit" method="post">
-
-          <%- include("./partials/posts/edit"); %>
-
-        </form>
-
-        <br>
-
-        <% }); %>
-        <% } else { %>
-        <div class="container text-center">
-          <h5>No notes to show. Enter subject and details to show up on the screen.</h5>
+            <% newItems.forEach((item, i) => { %>
+    
+            <form class="item" action="/dashboard/delete" method="post">
+    
+              <%- include("./partials/posts/delete",{item:item}); %>
+    
+            </form>
+    
+            <% }); %>
+            <% } else { %>
+            <div class="container text-center">
+              <h5>No notes to show. Enter subject and details to show up on the screen.</h5>
+            </div>
+            <% } %>
         </div>
-        <% } %>
-
-        <form class="item" action="/dashboard" method="post">
-
-          <%- include("./partials/posts/generic"); %>
-
-        </form>
 
       </div>
+
+          
+            <!-- Modal -->
+            <form class="item" action="/dashboard/edit" method="post">
+    
+              <%- include("./partials/posts/edit"); %>
+    
+            </form>
+    
+            <br>
+
+            <form class="item" action="/dashboard" method="post">
+
+              <%- include("./partials/posts/generic"); %>
+    
+            </form>
     </div>
 
     <br>
@@ -62,7 +64,7 @@
 
         <%- include ("./partials/messages") %>
 
-        <div class="row row-cols-1">
+        <div id='image-cards-container' class="row row-cols-1">
           <% if(files) { %>
           <% files.forEach(function(file) {  %>
             <form action="/dashboard/deleteCardData" method="post" enctype="multipart/form-data">

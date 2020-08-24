@@ -189,7 +189,7 @@ foo().then(res => {
 //delete cardData
 getfoo().then(res => {
   require("./post/deleteCardData")({
-    Item: Item,
+    Item: CardItem,
     uploadCardImages: res.uploadCardImages,
     gfs: res.gfs,
     router: router,

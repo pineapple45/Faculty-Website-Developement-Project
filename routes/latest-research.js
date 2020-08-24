@@ -10,7 +10,7 @@ const Grid = require('gridfs-stream');
 const crypto = require('crypto');
 const path = require("path");
 const bcrypt = require('bcryptjs');
-const merthodOverride = require('method-override');
+const methodOverride = require('method-override');
 
 // DB Config
 const db = require('../config/keys').MongoURI;
@@ -20,7 +20,7 @@ mongoose.set('useFindAndModify', false);
 
 //middleware for merthodOverride
 
-router.use(merthodOverride('_method'));
+router.use(methodOverride('_method'));
 
 const collectionName = 'LatestResearchImages';
 

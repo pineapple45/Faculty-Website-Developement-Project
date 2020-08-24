@@ -72,6 +72,7 @@ module.exports = function(values){
                          title: itemTitle,
                          details: itemInfo,
                          image: uploadImageName,
+                         timeStamp: Date.now(),
                          pos: val
                        });
 

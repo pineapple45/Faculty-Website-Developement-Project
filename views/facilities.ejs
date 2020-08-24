@@ -9,7 +9,7 @@
     <%- include ("./partials/messages") %>
   </div>
 
-  <div class="row row-cols-1 row-cols-md-3">
+  <div id='image-cards-container' class="row row-cols-1 row-cols-md-3">
     <% if(files) { %>
     <% files.forEach(function(file) {  %>
     <form action="/dashboard/facilities/deleteCardData" method="post" enctype="multipart/form-data">
@@ -20,19 +20,18 @@
     <p> No files to show </p>
     <% } %>
 
-
-    <div class="col mb-4">
-      <div class="card h-100">
-        <form id="cardImageUploadForm" class="" action="/dashboard/facilities/uploadCardData" method="post" enctype="multipart/form-data">
-          <%- include("./partials/posts/uploadCardData")%>
-        </form>
-      </div>
-    </div>
-
-    <!-- Modal -->
-    <form class="item" action="/dashboard/facilities/edit" method="post">
-      <%- include("./partials/posts/cardEdit") %>
-    </form>
-
   </div>
+
+  <div class="col mb-4">
+    <div class="card h-100">
+      <form id="cardImageUploadForm" class="" action="/dashboard/facilities/uploadCardData" method="post" enctype="multipart/form-data">
+        <%- include("./partials/posts/uploadCardData")%>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <form class="item" action="/dashboard/facilities/edit" method="post">
+    <%- include("./partials/posts/cardEdit") %>
+  </form>
 </div>

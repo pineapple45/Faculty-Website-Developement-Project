@@ -3,10 +3,8 @@ const mongoose = require("mongoose");
 
 
 io.on('connection', function(socket) {
-  // console.log('made socket connection' + socket.id);
 
   socket.on('dragdiv', (data) => {
-    // console.log(data);
 
     let startindex = data.startindex;
     let starttextid = data.starttextid;

@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const ItemSchema = new mongoose.Schema({
   subject:{
     type: String,
-    required: true
   },
   details:{
     type: String,
@@ -11,7 +10,11 @@ const ItemSchema = new mongoose.Schema({
   },
   pos:{
     type: Number,
-  }
+  },
+  timeStamp: {
+    type: Number,
+    default: Date.now()
+  },
 })
 
 

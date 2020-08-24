@@ -1,14 +1,22 @@
 <!-- Header ejs -->
-<%- include("./partials/tabs",{headerTitle:'CURRENT MEMBERS'}) %>
+<%- include("./partials/cm-tabs",{headerTitle:'CURRENT MEMBERS'}) %>
 <br><br>
 <%- include("./partials/notes/cardNotes") %>
 <hr>
+<div class="container">
+  <div class="row">
+    <%- include("./partials/searchBar",{searchId: 'search'}) %>
+    <br>
+    <%- include("./partials/dropdown",{title:'Sort By'}); %>
+  </div>
+</div>  
+<br>
 <div class="container">
   <div class="container w-25 sticky-top">
     <%- include ("./partials/messages") %>
   </div>
 
-  <div class="row row-cols-1 row-cols-md-3">
+  <div id='image-cards-container' class="row row-cols-1 row-cols-md-3">
     <% if(files) { %>
     <% files.forEach(function(file) {  %>
       <form action="/dashboard/cm-project-fellow/deleteCardData" method="post" enctype="multipart/form-data">
@@ -19,19 +27,18 @@
     <p> No files to show </p>
     <% } %>
 
-
-    <div class="col mb-4">
-      <div class="card h-100">
-        <form id="cardImageUploadForm" class="" action="/dashboard/cm-project-fellow/uploadCardData" method="post" enctype="multipart/form-data">
-          <%- include("./partials/posts/uploadCardData")%>
-        </form>
-      </div>
-    </div>
-
-    <!-- Modal -->
-    <form class="item" action="/dashboard/cm-project-fellow/edit" method="post">
-      <%- include("./partials/posts/cardEdit") %>
-    </form>
-
   </div>
+
+  <div class="col mb-4">
+    <div class="card h-100">
+      <form id="cardImageUploadForm" class="" action="/dashboard/cm-project-fellow/uploadCardData" method="post" enctype="multipart/form-data">
+        <%- include("./partials/posts/uploadCardData")%>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <form class="item" action="/dashboard/cm-project-fellow/edit" method="post">
+    <%- include("./partials/posts/cardEdit") %>
+  </form>
 </div>

@@ -9,38 +9,41 @@
 <br>
 
 <div class="container">
-  <% if(newItems) { %>
+  <div class="all-posts-container">
+    <% if(newItems) { %>
 
-  <% newItems.forEach((item, i) => { %>
+      <% newItems.forEach((item, i) => { %>
+    
+      <form class="item" action="/dashboard/invited-talks/delete" method="post">
+    
+        <%- include("./partials/posts/delete",{item:item}); %>
+    
+      </form>
+    
+      <% }); %>
+      <% } else { %>
+        <div class="container text-center">
+          <h5>No notes to show. Enter subject and details to show up on the screen.</h5>
+        </div>
+      <% } %>
+  </div>
 
-  <form class="item" action="/dashboard/invited-talks/delete" method="post">
+      
+    
+      <!-- Modal -->
+      <form class="item" action="/dashboard/invited-talks/edit" method="post">
+    
+        <%- include("./partials/posts/edit"); %>
+    
+      </form>
+    
+      <br>
 
-    <%- include("./partials/posts/delete",{item:item}); %>
+      <form class="item" action="/dashboard/invited-talks" method="post">
 
-  </form>
+        <%- include("./partials/posts/generic"); %>
 
-
-  <!-- Modal -->
-  <form class="item" action="/dashboard/invited-talks/edit" method="post">
-
-    <%- include("./partials/posts/edit"); %>
-
-  </form>
-
-  <br>
-
-  <% }); %>
-  <% } else { %>
-    <div class="container text-center">
-      <h5>No notes to show. Enter subject and details to show up on the screen.</h5>
-    </div>
-  <% } %>
-
-  <form class="item" action="/dashboard/invited-talks" method="post">
-
-    <%- include("./partials/posts/generic"); %>
-
-  </form>
+      </form>
 </div>
 
 <hr>

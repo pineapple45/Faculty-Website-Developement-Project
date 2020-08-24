@@ -77,6 +77,16 @@ foo().then(res => {
   });
 });
 
+foo().then(res => {
+  gfs = res;
+  require('./get/getCardData')({
+    router: router,
+    gfs: gfs,
+    renderedPage: 'cm-visiting-faculty',
+    Item:Item,
+  });
+});
+
 
 
 // @route POST /dashboard/facilities/uploadFacilityImages

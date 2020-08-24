@@ -4,7 +4,10 @@ const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+const cors = require('cors');
 const app = express();
+
+app.use(cors());
 
 const {
   ensureAuthenticated
@@ -27,7 +30,7 @@ require('./config/passport')(passport);
 const db = require('./config/keys').MongoURI;
 
 //Connect to Mongo
-mongoose.connect(db, {useNewUrlParser: true,useUnifiedTopology: true}).then(()=>{console.log("Mongo DB connected...")}).catch((err)=>(console.log(err)));
+mongoose.connect(db, {useNewUrlParser: true,useUnifiedTopology: true}).then(()=>{console.log("MongoDB connected...")}).catch((err)=>(console.log(err)));
 global.conn = mongoose.createConnection(db, {useNewUrlParser: true, useUnifiedTopology: true},() => {console.log('MongoDB connected...')});
 mongoose.set('useCreateIndex', true);
 
@@ -85,6 +88,15 @@ app.use('/dashboard/cm-project-fellow',require('./routes/cm-project-fellow'));
 app.use('/dashboard/cm-visiting-faculty',require('./routes/cm-visiting-faculty'));
 app.use('/dashboard/cm-masters-students',require('./routes/cm-masters-students'));
 app.use('/dashboard/cm-bachelor-students',require('./routes/cm-bachelor-students'));
+app.use('/dashboard/cm-all',require('./routes/cm-all'));
+
+app.use('/dashboard/allumni-research-scholars',require('./routes/allumni-research-scholars'));
+app.use('/dashboard/allumni-internship-students',require('./routes/allumni-internship-students'));
+app.use('/dashboard/allumni-project-fellow',require('./routes/allumni-project-fellow'));
+app.use('/dashboard/allumni-visiting-faculty',require('./routes/allumni-visiting-faculty'));
+app.use('/dashboard/allumni-masters-students',require('./routes/allumni-masters-students'));
+app.use('/dashboard/allumni-bachelor-students',require('./routes/allumni-bachelor-students'));
+app.use('/dashboard/allumni-all',require('./routes/allumni-all'));
 app.use('/users',require('./routes/users'));
 
 const PORT = process.env.PORT || 5000;

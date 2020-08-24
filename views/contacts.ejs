@@ -9,38 +9,39 @@
 <br>
 
 <div class="container">
-  <% if(newItems) { %>
+  <div class="all-posts-container">
+    <% if(newItems) { %>
 
-  <% newItems.forEach((item, i) => { %>
+      <% newItems.forEach((item, i) => { %>
+    
+      <form class="item" action="/dashboard/contacts/delete" method="post">
+    
+        <%- include("./partials/posts/delete",{item:item}); %>
+    
+      </form>
+    
+      <% }); %>
+      <% } else { %>
+        <div class="container text-center">
+          <h5>No notes to show. Enter subject and details to show up on the screen.</h5>
+        </div>
+      <% } %>
+  </div>
 
-  <form class="item" action="/dashboard/contacts/delete" method="post">
+        <!-- Modal -->
+        <form class="item" action="/dashboard/contacts/edit" method="post">
+    
+          <%- include("./partials/posts/edit"); %>
+      
+        </form>
+      
+        <br>
 
-    <%- include("./partials/posts/delete",{item:item}); %>
+        <form class="item" action="/dashboard/contacts" method="post">
 
-  </form>
+          <%- include("./partials/posts/generic"); %>
 
-
-  <!-- Modal -->
-  <form class="item" action="/dashboard/contacts/edit" method="post">
-
-    <%- include("./partials/posts/edit"); %>
-
-  </form>
-
-  <br>
-
-  <% }); %>
-  <% } else { %>
-    <div class="container text-center">
-      <h5>No notes to show. Enter subject and details to show up on the screen.</h5>
-    </div>
-  <% } %>
-
-  <form class="item" action="/dashboard/contacts" method="post">
-
-    <%- include("./partials/posts/generic"); %>
-
-  </form>
+        </form>
 </div>
 
 <hr>
