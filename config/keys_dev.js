@@ -1,5 +1,5 @@
 module.exports = {
-    MongoURI: 'mongodb+srv://anmol123:anmol123@facultywebsitecluster.cvm0y.mongodb.net/facultyWebsiteDB?retryWrites=true&w=majority',
+    MongoURI: 'mongodb://localhost:27017/facultyWebsiteDB',
     RegisteredEmail: process.env.REGISTERED_EMAIL
   }
   
