@@ -17,7 +17,6 @@ const renderedPage = 'cm-all';
 mongoose.set('useFindAndModify', false);
 const { connect } = require('http2');
 const { response } = require('express');
-console.log(process.env.REGISTERED_EMAIL);
 
 router.get('/', (req, res) => {
 

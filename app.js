@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
@@ -5,6 +6,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const cors = require('cors');
+const mongoStore = require('connect-mongo')(session);
 const app = express();
 
 app.use(cors());
@@ -41,12 +43,15 @@ app.set('view engine', 'ejs');
 //Body Parser
 app.use(express.urlencoded({extended: false}));
 
-
 //Express-session
 app.use(session({
-  secret: 'secret',
-  resave: true,
-  saveUninitialized: true
+  secret: process.env.EXPRESS_SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {secure:true},
+  store: new mongoStore({ mongooseConnection: global.conn,
+                          collection: 'sessions',
+                          ttl:  60 *  60 })
 }));
 
 
