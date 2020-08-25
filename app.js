@@ -46,12 +46,12 @@ app.use(express.urlencoded({extended: false}));
 //Express-session
 app.use(session({
   secret: process.env.EXPRESS_SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {secure:true},
+  resave: true,
+  saveUninitialized: true,
   store: new mongoStore({ mongooseConnection: global.conn,
                           collection: 'sessions',
-                          ttl:  60 *  60 })
+                          ttl:  1 * 60 *  60 })
+
 }));
 
 
