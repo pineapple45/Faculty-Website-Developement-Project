@@ -15,6 +15,7 @@ const {
   ensureAuthenticated
 } = require('./config/auth');
 
+
 // make a global sockei.io connection
 const server = require('http').Server(app);
 global.io = require('socket.io')(server);
@@ -33,7 +34,7 @@ const db = require('./config/keys').MongoURI;
 
 //Connect to Mongo
 mongoose.connect(db, {useNewUrlParser: true,useUnifiedTopology: true}).then(()=>{console.log("MongoDB connected...")}).catch((err)=>(console.log(err)));
-global.conn = mongoose.createConnection(db, {useNewUrlParser: true, useUnifiedTopology: true},() => {console.log('MongoDB connected...')});
+global.conn = mongoose.createConnection(db,{useNewUrlParser: true,useUnifiedTopology: true},() => {console.log('MongoDB connected...')});
 mongoose.set('useCreateIndex', true);
 
 //EJS

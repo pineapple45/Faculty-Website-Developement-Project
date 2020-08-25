@@ -18,21 +18,32 @@ mongoose.set('useFindAndModify', false);
 const { connect } = require('http2');
 const { response } = require('express');
 
+
+const url1 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-research-scholars/getCardData`;
+const url2 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-internship-students/getCardData`;
+const url3 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-project-fellow/getCardData`;
+const url4 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-visiting-faculty/getCardData`;
+const url5 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-masters-students/getCardData`;
+const url6 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-bachelor-students/getCardData`;
+
+
+
 router.get('/', (req, res) => {
 
-    const url1 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-research-scholars/getCardData`;
-    const url2 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-internship-students/getCardData`;
-    const url3 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-project-fellow/getCardData`;
-    const url4 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-visiting-faculty/getCardData`;
-    const url5 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-masters-students/getCardData`;
-    const url6 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-bachelor-students/getCardData`;
+    // axios.get(url1,{
+    //     headers: { cookie: req.headers.cookie }
+    // }).then(response => {
+    //     console.log(response.data)
+    // }).catch(err => {
+    //     console.log(err)
+    // })
 
-    const request1 = axios.get(url1);
-    const request2 = axios.get(url2);
-    const request3 = axios.get(url3);
-    const request4 = axios.get(url4);
-    const request5 = axios.get(url5);
-    const request6 = axios.get(url6);
+    const request1 = axios.get(url1, {headers: { cookie: req.headers.cookie }});
+    const request2 = axios.get(url2, {headers: { cookie: req.headers.cookie }});
+    const request3 = axios.get(url3, {headers: { cookie: req.headers.cookie }});
+    const request4 = axios.get(url4, {headers: { cookie: req.headers.cookie }});
+    const request5 = axios.get(url5, {headers: { cookie: req.headers.cookie }});
+    const request6 = axios.get(url6, {headers: { cookie: req.headers.cookie }});
     let filesArray = [];
 
     axios.all([request1,request2,request3,request4,request5,request6]).then(axios.spread((...responses) =>{
@@ -59,7 +70,7 @@ router.get('/', (req, res) => {
         res.render(renderedPage,{
             files: filesArray
         })
-        // res.redirect('back')
+        res.redirect('back')
     
     })).catch(err =>{
         console.log(err)
