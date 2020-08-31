@@ -50,9 +50,7 @@ router.get('/', (req, res) => {
         })
 
         if(filesArray.length == 0){
-            // return res.status(404).json({
-            //     err: 'No images found'
-            //   });
+        
             res.render(renderedPage,{
                 files: false
             })
@@ -61,7 +59,6 @@ router.get('/', (req, res) => {
         res.render(renderedPage,{
             files: filesArray
         })
-        // res.redirect('back')
     
     })).catch(err =>{
         console.log(err)

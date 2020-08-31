@@ -30,14 +30,6 @@ const url6 = `http://${process.env.HEROKU_BASE_URL}/dashboard/cm-bachelor-studen
 
 router.get('/', (req, res) => {
 
-    // axios.get(url1,{
-    //     headers: { cookie: req.headers.cookie }
-    // }).then(response => {
-    //     console.log(response.data)
-    // }).catch(err => {
-    //     console.log(err)
-    // })
-
     const request1 = axios.get(url1, {headers: { cookie: req.headers.cookie }});
     const request2 = axios.get(url2, {headers: { cookie: req.headers.cookie }});
     const request3 = axios.get(url3, {headers: { cookie: req.headers.cookie }});
@@ -59,9 +51,7 @@ router.get('/', (req, res) => {
         })
 
         if(filesArray.length == 0){
-            // return res.status(404).json({
-            //     err: 'No images found'
-            //   });
+          
             res.render(renderedPage,{
                 files: false
             })
@@ -70,7 +60,6 @@ router.get('/', (req, res) => {
         res.render(renderedPage,{
             files: filesArray
         })
-        res.redirect('back')
     
     })).catch(err =>{
         console.log(err)
